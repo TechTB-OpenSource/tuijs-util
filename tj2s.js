@@ -70,36 +70,7 @@ async function ttbReadJson(filePath) {
     }
 }
 
-// Counts array and returns length count
-function ttbGetAryCnt(datAry) {
-    if (datAry == null) {return};
-    var datRe = datAry.length;
-    return datRe;
-}
-
-// Counts array and returns index count
-function ttbGetAryIndex(datAry) {
-    if (datAry == null) {return};
-    var datRe = datAry.length;
-    datRe = datRe - 1;
-    return datRe;
-}
-
-// Convert array length count to index count (Subtracts 1 from num)
-function ttbConvCntToIndex(num) {
-    if (num == null) {return};
-    var datRe = num - 1;
-    return datRe;
-}
-
-// Removes the last object in an array
-function ttbDelAryLast(datAry) {
-    if (datAry == null) {return};
-    datRe = datAry.slice(0, -1);
-    return datRe;
-}
-
-// Function to check the validity of a URL
+/* Function to check the validity of a URL
 // SOURCE: https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
 function ttbIsValidUrl(str) {
     if (str == null) {return};
@@ -121,7 +92,7 @@ function ttbAddUrlStart(url) {
         url = "http://" + url
     }
     return url;
-}
+}*/
 
 // Function to check if file is an image (Can be altered to include different images)
 // SOURCE: https://roufid.com/javascript-check-file-image/
@@ -144,7 +115,7 @@ function ttbRadioFormValue(form) {
     return false;
 }
 
-// Function to call PHP file and return data in JSON
+/* Function to call PHP file and return data in JSON
 // Function is expecting JSON return status code (usually 1 for succesful and 0 for failure) and JSON return text
 async function ttbPostToPhp(phpFile, data = null) {
     if (phpFile == null) {return};
@@ -175,7 +146,7 @@ async function ttbPostDatFromPhp(phpFile, data = null) {
 function ttbStrSpaceCheck(str) {
     if (str == null) {return};
     return str.indexOf(' ') >= 0;
-  }
+}*/
 
 // Show the preview of a selected image in selected an img elemenet
 function ttbImgPre(imgInput, imgPreviewElm) {
@@ -186,7 +157,7 @@ function ttbImgPre(imgInput, imgPreviewElm) {
     }
 }
 
-// Validates email address as string using regex
+/* Validates email address as string using regex
 function ttbValidEmail(str) {
     if (str == null) {return};
     var validRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -202,7 +173,7 @@ function ttbAddZero(num) {
     if (num == null) {return};
     if (num < 10) { num = "0" + num };
     return num;
-}
+}*/
 
 // Gets public IP of client
 async function ttbPubIp() {
@@ -215,7 +186,7 @@ async function ttbPubIp() {
     }
 }
 
-// Checks for numbers (Returns true if it matches)
+/* Checks for numbers (Returns true if it matches)
 function ttbCharCheckNm(str) {
     if (str == null) {return};
     const regNm = /[0-9]/;
@@ -253,4 +224,4 @@ function ttbCharCheckSp(str) {
         return true;
     }
     return false;
-}
+}*/
