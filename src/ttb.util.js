@@ -1,3 +1,5 @@
+/* TTBJS VERSION 0.0.1 */
+
 function spaceCheck(str) {
     return str.indexOf(' ') >= 0;
 }

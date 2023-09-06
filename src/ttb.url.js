@@ -1,3 +1,5 @@
+/* TTBJS VERSION 0.0.1 */
+
 function urlIsValid(str) {
     var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
