@@ -1,6 +1,11 @@
 {
-  "name": "internal-tool-ttbjs",
+  "name": "ttbjs",
   "version": "0.0.1",
-  "description": "",
-  "author": "TechTB"
+  "main": "./index.js",
+  "description": "TechTB JavaScript Utility Library",
+  "author": "TechTB",
+  "type": "module",
+  "bin": {  
+    "getExports": "./bin/get.exports.js"  
+  }
 }
