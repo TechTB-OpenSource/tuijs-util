@@ -1,6 +1,8 @@
 import * as utilMisc from '../lib/util.misc.js';
 import * as utilConvert from '../lib/util.convert.js';
-import * as utilTest from '../lib/util.test.js';
+import * as utilCheck from '../lib/util.check.js';
+import * as utilHttp from '../lib/util.http.js';
+//import * as utilTest from '../lib/util.test.js';
 
 const colors = {
     reset: '\x1b[0m',
@@ -18,7 +20,18 @@ console.log(`${logExports(utilMisc)}
 console.log(`${colors.blue}utilConvert:${colors.reset}`)
 console.log(`${logExports(utilConvert)}
 `);
-//console.log(logExports(utilTest))
+console.log(`${colors.blue}utilCheck:${colors.reset}`)
+console.log(`${logExports(utilCheck)}
+`);
+console.log(`${colors.blue}utilHttp:${colors.reset}`)
+console.log(`${logExports(utilHttp)}
+`);
+
+console.log(`${colors.blue}All:${colors.reset}`)
+console.log(`${logExports(utilMisc)},`);
+console.log(`${logExports(utilConvert)},`);
+console.log(`${logExports(utilCheck)},`);
+console.log(`${logExports(utilHttp)},`);
 
 function logExports(exports) {
     let arr = []
@@ -26,5 +39,5 @@ function logExports(exports) {
         arr.push(exportKey);
     });
     const stringWithNewLines = arr.join(',\n');
-    console.log(stringWithNewLines);
+    return stringWithNewLines;
 }

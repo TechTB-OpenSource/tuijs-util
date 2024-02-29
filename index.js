@@ -1,63 +1,72 @@
 //// IMPORTS ////
 // Individual imports from './lib/util.misc.js'
 import {
-    addLeadZero,
+    addLeadZero
+} from './lib/util.misc.js';
+// Individual imports from './lib/util.convert.js'
+import {
+    convertListToJs,
+    convertToJs,
+    convertToJson
+} from './lib/util.convert.js';
+// Individual imports from './lib/util.test.js'
+import {
     emailIsValid,
     isArray,
+    isJson,
     isList,
     isObject,
-    reqGetJson,
-    reqPostForm,
-    reqPostJSON,
     spaceCheck,
     stringCheckLow,
     stringCheckLowUpp,
     stringCheckNum,
     stringCheckSpec,
-    urlAddHttp,
-    urlAddHttps,
     urlIsValid
-} from './lib/util.misc.js';
-// Individual imports from './lib/util.convert.js'
-import {
-    convertListToJs,
-    convertToJson
-} from './lib/util.convert.js';
+} from './lib/util.check.js';
 // Individual imports from './lib/util.test.js'
 import {
-} from './lib/util.test.js';
+    reqGetJson,
+    reqPostForm,
+    reqPostJSON,
+    urlAddHttp,
+    urlAddHttps
+} from './lib/util.http.js';
 // Group imports
-import * as utilMisc from './lib/util.misc.js';
-import * as utilConvert from './lib/util.convert.js';
-import * as utilTest from './lib/util.test.js';
+import * as utilMisc from '../lib/util.misc.js';
+import * as utilConvert from '../lib/util.convert.js';
+import * as utilCheck from '../lib/util.check.js';
+import * as utilHttp from '../lib/util.http.js';
 
 //// EXPORTS ////
 // Individual exports from all
 export {
     addLeadZero,
     convertListToJs,
+    convertToJs,
     convertToJson,
     emailIsValid,
     isArray,
+    isJson,
     isList,
     isObject,
-    reqGetJson,
-    reqPostForm,
-    reqPostJSON,
     spaceCheck,
     stringCheckLow,
     stringCheckLowUpp,
     stringCheckNum,
     stringCheckSpec,
+    urlIsValid,
+    reqGetJson,
+    reqPostForm,
+    reqPostJSON,
     urlAddHttp,
-    urlAddHttps,
-    urlIsValid
+    urlAddHttps
 }
 
 // All exports
 const allUtils = {
     utilMisc,
     utilConvert,
-    utilTest
+    utilCheck,
+    utilHttp
 }
 export default allUtils;
