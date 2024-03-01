@@ -6,6 +6,6 @@
   "author": "TechTB",
   "type": "module",
   "bin": {  
-    "getExports": "./bin/get.exports.js"  
+    "ttbjs": "./bin/get.exports.js"  
   }
 }
