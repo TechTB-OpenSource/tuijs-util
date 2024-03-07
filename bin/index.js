@@ -15,6 +15,9 @@ const colors = {
     cyan: '\x1b[36m',
 };
 
+/**
+ * UPDATE THIS TO JUST CREATE A NEW INDEX.HTML!!!!!
+ */
 ex(process.argv.slice(2));
 
 function ex(arg) {

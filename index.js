@@ -1,7 +1,9 @@
 //// IMPORTS ////
 // Individual imports from 'lib/util.misc.js'
 import {
-    addLeadZero
+    addLeadZero,
+    utilElmCleaner,
+    utilElmCleanerTr
 } from './lib/util.misc.js';
 // Individual imports from 'lib/util.convert.js'
 import {
@@ -37,6 +39,8 @@ import {
 // Individual exports from all
 export {
     addLeadZero,
+    utilElmCleaner,
+    utilElmCleanerTr,
     convertListToJs,
     convertToJs,
     convertToJson,
