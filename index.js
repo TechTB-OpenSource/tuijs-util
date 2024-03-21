@@ -3,7 +3,8 @@
 import {
     addLeadZero,
     utilElmCleaner,
-    utilElmCleanerTr
+    utilElmCleanerTr,
+    generateUID
 } from './lib/util.misc.js';
 // Individual imports from 'lib/util.convert.js'
 import {
@@ -41,6 +42,7 @@ export {
     addLeadZero,
     utilElmCleaner,
     utilElmCleanerTr,
+    generateUID,
     convertListToJs,
     convertToJs,
     convertToJson,
