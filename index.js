@@ -29,6 +29,7 @@ import {
 // Individual imports from 'lib/util.test.js'
 import {
     reqFileJson,
+    reqGet,
     reqPostForm,
     reqPostJson,
     urlAddHttp,
@@ -58,6 +59,7 @@ export {
     checkUppercase,
     checkUrl,
     reqFileJson,
+    reqGet,
     reqPostForm,
     reqPostJson,
     urlAddHttp,
