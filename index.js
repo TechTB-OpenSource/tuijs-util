@@ -28,9 +28,9 @@ import {
 } from './lib/util.check.js';
 // Individual imports from 'lib/util.test.js'
 import {
-    reqGetJson,
+    reqFileJson,
     reqPostForm,
-    reqPostJSON,
+    reqPostJson,
     urlAddHttp,
     urlAddHttps
 } from './lib/util.http.js';
@@ -57,9 +57,9 @@ export {
     checkSpecialChar,
     checkUppercase,
     checkUrl,
-    reqGet,
+    reqFileJson,
     reqPostForm,
-    reqPostJSON,
+    reqPostJson,
     urlAddHttp,
     urlAddHttps
 }
