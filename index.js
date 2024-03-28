@@ -1,18 +1,3 @@
-//// IMPORTS ////
-// Individual imports from 'lib/util.misc.js'
-import {
-    addLeadZero,
-    utilElmCleaner,
-    utilElmCleanerTr,
-    generateUID
-} from './lib/util.misc.js';
-// Individual imports from 'lib/util.convert.js'
-import {
-    convertListToJs,
-    convertToJs,
-    convertToJson
-} from './lib/util.convert.js';
-// Individual imports from 'lib/util.test.js'
 import {
     checkEmail,
     checkIsArray,
@@ -24,9 +9,14 @@ import {
     checkSpaces,
     checkSpecialChar,
     checkUppercase,
-    checkUrl
+    checkUrl,
+    checkFqdn
 } from './lib/util.check.js';
-// Individual imports from 'lib/util.test.js'
+import {
+    convertListToJs,
+    convertToJs,
+    convertToJson
+} from './lib/util.convert.js';
 import {
     reqFileJson,
     reqGet,
@@ -35,10 +25,23 @@ import {
     urlAddHttp,
     urlAddHttps
 } from './lib/util.http.js';
-// Group imports
+import {
+    addLeadZero,
+    utilElmCleaner,
+    utilElmCleanerTr,
+    generateUID
+} from './lib/util.misc.js';
+import {
+    binary,
+    hexadecimal,
+    letters,
+    lettersLower,
+    lettersUpper,
+    numbers,
+    removeChar,
+    special
+} from './lib/util.regex.js';
 
-//// EXPORTS ////
-// Individual exports from all
 export {
     addLeadZero,
     generateUID,
@@ -58,10 +61,19 @@ export {
     checkSpecialChar,
     checkUppercase,
     checkUrl,
+    checkFqdn,
     reqFileJson,
     reqGet,
     reqPostForm,
     reqPostJson,
     urlAddHttp,
-    urlAddHttps
+    urlAddHttps,
+    binary,
+    hexadecimal,
+    letters,
+    lettersLower,
+    lettersUpper,
+    numbers,
+    removeChar,
+    special
 }
