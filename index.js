@@ -27,8 +27,10 @@ import {
 } from './lib/util.http.js';
 import {
     addLeadZero,
-    utilElmCleaner,
-    utilElmCleanerTr,
+    elmCleaner,
+    elmCleanerTr,
+    elmCleanerArray,
+    parseTemplate,
     generateUID
 } from './lib/util.misc.js';
 import {
@@ -45,8 +47,10 @@ import {
 export {
     addLeadZero,
     generateUID,
-    utilElmCleaner,
-    utilElmCleanerTr,
+    elmCleaner,
+    elmCleanerTr,
+    elmCleanerArray,
+    parseTemplate,
     convertListToJs,
     convertToJs,
     convertToJson,
