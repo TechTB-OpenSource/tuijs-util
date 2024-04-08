@@ -1,11 +1,11 @@
 {
-  "name": "ttbjs",
+  "name": "tjs",
   "version": "0.0.1",
-  "main": "./index.js",
+  "main": "./src/index.js",
   "description": "TechTB JavaScript Utility Library",
   "author": "TechTB",
   "type": "module",
   "bin": {  
-    "ttbjs": "./bin/index.js"  
+    "tjs": "./bin/index.js"  
   }
 }

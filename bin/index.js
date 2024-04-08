@@ -1,10 +1,10 @@
 #! /usr/bin/env node
-import * as utilCheck from '../lib/util.check.js';
-import * as utilConvert from '../lib/util.convert.js';
-import * as utilHttp from '../lib/util.http.js';
-import * as utilMisc from '../lib/util.misc.js';
-import * as utilRegex from '../lib/util.regex.js';
-//import * as utilTest from '../lib/util.test.js';
+import * as utilCheck from '../src/lib/util.check.js';
+import * as utilConvert from '../src/lib/util.convert.js';
+import * as utilHttp from '../src/lib/util.http.js';
+import * as utilMisc from '../src/lib/util.misc.js';
+import * as utilRegex from '../src/lib/util.regex.js';
+//import * as utilTest from '../src/lib/util.test.js';
 
 const colors = {
     reset: '\x1b[0m',
