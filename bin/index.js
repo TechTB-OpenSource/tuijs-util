@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 import * as utilCheck from '../src/lib/util.check.js';
-import * as utilConvert from '../src/lib/util.convert.js';
+import * as utilConvert from '../src/test/util.convert.js';
 import * as utilHttp from '../src/lib/util.http.js';
 import * as utilMisc from '../src/lib/util.misc.js';
 import * as utilRegex from '../src/lib/util.regex.js';

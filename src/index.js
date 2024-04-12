@@ -13,11 +13,6 @@ import {
     checkFqdn
 } from './lib/util.check.js';
 import {
-    convertListToJs,
-    convertToJs,
-    convertToJson
-} from './lib/util.convert.js';
-import {
     reqFileJson,
     reqGet,
     reqPostForm,
@@ -51,9 +46,6 @@ export {
     elmCleanerTr,
     elmCleanerArray,
     parseTemplate,
-    convertListToJs,
-    convertToJs,
-    convertToJson,
     checkEmail,
     checkIsArray,
     checkIsJson,

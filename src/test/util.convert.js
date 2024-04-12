@@ -1,15 +1,3 @@
-/**
- * TTB-JS
- * TechTB JavaScript Utility Library
- * Conversion Utilities
- * Version 0.0.1
- */
-import {
-    checkIsArray,
-    checkIsObject,
-    checkIsList
-} from './util.check.js';
-
 export function convertToJson(input) {
     if (isArray(input) || isObject(input)) {
         return JSON.stringify(input);

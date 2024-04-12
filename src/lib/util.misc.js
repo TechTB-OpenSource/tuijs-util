@@ -1,10 +1,3 @@
-/**
- * TTB-JS
- * TechTB JavaScript Utility Library
- * Miscellaneous  Utilities
- * Version 0.0.1
- */
-
 // Adds zero in front of numbers less than 10
 export function addLeadZero(num) {
     try {
@@ -81,7 +74,6 @@ export function parseTemplate(templateLit) {
         throw new Error(er);
     }
 }
-
 
 /**
  * Generates a unique ID

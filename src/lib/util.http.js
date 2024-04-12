@@ -1,10 +1,3 @@
-/**
- * TTB-JS
- * TechTB JavaScript Utility Library
- * HTTP Utilities
- * Version 0.0.1
- */
-
 // Adds 'http://' if valid URL
 export function urlAddHttp(url) {
     try {

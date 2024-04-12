@@ -1,9 +1,3 @@
-/**
- * TTB-JS
- * TechTB JavaScript Utility Library
- * Checker Utilities
- * Version 0.0.1
- */
 // Checks for a valid FQDN (uses regex)
 export function checkFqdn(str) {
     if (typeof str !== "string" || str.length === 0 || str.length > 253) {

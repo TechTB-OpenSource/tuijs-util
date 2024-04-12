@@ -1,8 +1,8 @@
 {
   "name": "tjs",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "./src/index.js",
-  "description": "TechTB JavaScript Utility Library",
+  "description": "A simple JavaScript utility library",
   "author": "TechTB",
   "type": "module",
   "bin": {  
