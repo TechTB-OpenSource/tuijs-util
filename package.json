@@ -1,8 +1,9 @@
 {
   "name": "ttbjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./src/index.js",
   "description": "A simple JavaScript utility library",
   "author": "TechTB",
+  "repository": "github:TechTB-Public/ttbjs",
   "type": "module"
 }
