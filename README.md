@@ -1,4 +1,4 @@
-# TechTB - TJS
+# TechTB - TTBJS
 
 ## Description
 A simple JavaScript utility library
