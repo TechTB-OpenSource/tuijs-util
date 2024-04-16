@@ -1,9 +1,10 @@
 #! /usr/bin/env node
 import * as utilCheck from '../src/lib/util.check.js';
-import * as utilConvert from '../src/test/util.convert.js';
+import * as utilDom from '../test/util.dome.js';
 import * as utilHttp from '../src/lib/util.http.js';
 import * as utilMisc from '../src/lib/util.misc.js';
 import * as utilRegex from '../src/lib/util.regex.js';
+//import * as utilConvert from '../src/test/util.convert.js';
 //import * as utilTest from '../src/lib/util.test.js';
 
 const colors = {
@@ -25,8 +26,8 @@ function ex(arg) {
     console.log(`${colors.blue}utilCheck:${colors.reset}`)
     console.log(`${logExports(utilCheck)}
 `);
-    console.log(`${colors.blue}utilConvert:${colors.reset}`)
-    console.log(`${logExports(utilConvert)}
+    console.log(`${colors.blue}utilDom:${colors.reset}`)
+    console.log(`${logExports(utilDom)}
 `);
     console.log(`${colors.blue}utilHttp:${colors.reset}`)
     console.log(`${logExports(utilHttp)}
@@ -39,7 +40,7 @@ function ex(arg) {
 `);
     console.log(`${colors.blue}All:${colors.reset}`)
     console.log(`${logExports(utilMisc)},`);
-    console.log(`${logExports(utilConvert)},`);
+    console.log(`${logExports(utilDom)},`);
     console.log(`${logExports(utilCheck)},`);
     console.log(`${logExports(utilHttp)},`);
     console.log(`${logExports(utilRegex)},`);

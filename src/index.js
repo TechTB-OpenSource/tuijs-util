@@ -1,4 +1,19 @@
-import {
+import * as check from './lib/util.check.js';
+import * as dom from './lib/util.dom.js';
+import * as http from './lib/util.http.js';
+import * as misc from './lib/util.misc.js';
+import * as regex from './lib/util.regex.js';
+
+export { dom };
+export const {
+    elmCleaner,
+    elmCleanerTr,
+    elmCleanerArray,
+    parseTemplate
+} = dom;
+
+export { check };
+export const {
     checkEmail,
     checkIsArray,
     checkIsJson,
@@ -11,59 +26,26 @@ import {
     checkUppercase,
     checkUrl,
     checkFqdn
-} from './lib/util.check.js';
-import {
+} = check;
+
+export { http };
+export const {
     reqFileJson,
     reqGet,
     reqPostForm,
     reqPostJson,
     urlAddHttp,
     urlAddHttps
-} from './lib/util.http.js';
-import {
-    addLeadZero,
-    elmCleaner,
-    elmCleanerTr,
-    elmCleanerArray,
-    parseTemplate,
-    generateUID
-} from './lib/util.misc.js';
-import {
-    binary,
-    hexadecimal,
-    letters,
-    lettersLower,
-    lettersUpper,
-    numbers,
-    removeChar,
-    special
-} from './lib/util.regex.js';
+} = http;
 
-export {
+export { misc };
+export const {
     addLeadZero,
-    generateUID,
-    elmCleaner,
-    elmCleanerTr,
-    elmCleanerArray,
-    parseTemplate,
-    checkEmail,
-    checkIsArray,
-    checkIsJson,
-    checkIsList,
-    checkIsObject,
-    checkLowercase,
-    checkNum,
-    checkSpaces,
-    checkSpecialChar,
-    checkUppercase,
-    checkUrl,
-    checkFqdn,
-    reqFileJson,
-    reqGet,
-    reqPostForm,
-    reqPostJson,
-    urlAddHttp,
-    urlAddHttps,
+    generateUID
+} = misc;
+
+export { regex };
+export const {
     binary,
     hexadecimal,
     letters,
@@ -72,4 +54,4 @@ export {
     numbers,
     removeChar,
     special
-}
+} = regex;

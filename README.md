@@ -7,5 +7,11 @@ A simple JavaScript utility library
 npm i tjs
 
 ## Import
-All utilities are exported individually. Simply import the specify utility you want.
-***"import {} from 'tjs'"***
+All utilities are exported both as a module and individually. Simply import the module or the specific utility you want.
+
+## Examples
+import { module } from 'tjs';
+module.function();
+
+import { function } from 'tjs';
+function();

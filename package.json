@@ -4,8 +4,5 @@
   "main": "./src/index.js",
   "description": "A simple JavaScript utility library",
   "author": "TechTB",
-  "type": "module",
-  "bin": {  
-    "tjs": "./bin/index.js"  
-  }
+  "type": "module"
 }
