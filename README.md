@@ -1,4 +1,5 @@
-# TechTB - TTBJS
+# TTBJS
+## TechTB
 
 ## Description
 A simple JavaScript utility library
@@ -10,8 +11,12 @@ npm i ttbjs
 All utilities are exported both as a module and individually. Simply import the module or the specific utility you want.
 
 ## Examples
-import { module } from 'ttbjs';
-module.function();
+```javascript
+import { utilFunctionName } from 'ttbjs';
+utilFunctionName();
+```
 
-import { function } from 'ttbjs';
-function();
+```javascript
+import { utilModule } from 'ttbjs';
+utilModule.utilFunctionName();
+```

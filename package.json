@@ -1,9 +1,10 @@
 {
   "name": "ttbjs",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "main": "./src/index.js",
   "description": "A simple JavaScript utility library",
   "author": "TechTB",
+  "license": "MIT",
   "repository": "github:TechTB-Public/ttbjs",
   "type": "module"
 }
