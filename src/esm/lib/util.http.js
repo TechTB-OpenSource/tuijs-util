@@ -1,7 +1,9 @@
+import { checkUrl } from './util.check';
+
 // Adds 'http://' if valid URL
 export function urlAddHttp(url) {
     try {
-        if (str === null || !urlIsValid(str)) {
+        if (url === null || !checkUrl(url)) {
             throw `Invalid input.`;
         };
         if (url.startsWith("http://") == false && url.startsWith("https://") == false) {
@@ -16,7 +18,7 @@ export function urlAddHttp(url) {
 // Adds 'https://' if valid URL
 export function urlAddHttps(url) {
     try {
-        if (str === null || !urlIsValid(str)) {
+        if (url === null || !checkUrl(url)) {
             throw `Invalid input.`;
         };
         if (url.startsWith("http://") == false && url.startsWith("https://") == false) {
