@@ -17,3 +17,13 @@ export function addLeadZero(num) {
 export function generateUID() {
     return 'uid-' + Date.now().toString(36) + '-' + Math.random().toString(36).substr(2);
 }
+
+/**
+ * Preloads images. Requires an array of image URL strings.
+ */
+function preloadImages(imgUrls) {
+    imgUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+    });
+}
