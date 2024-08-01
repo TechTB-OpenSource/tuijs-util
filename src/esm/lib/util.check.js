@@ -99,6 +99,11 @@ export function checkIsArray(input) {
     }
 }
 
+/**
+ * Checks if an input value is an object.
+ * @param {*} input - Any variable
+ * @returns {boolean}
+ */
 export function checkIsObject(input) {
     try {
         return input.constructor === Object;
