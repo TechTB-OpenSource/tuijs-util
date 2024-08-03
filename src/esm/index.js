@@ -47,7 +47,8 @@ export const {
 export { misc };
 export const {
     addLeadZero,
-    generateUID
+    generateUID,
+    preloadImages
 } = misc;
 
 export { regex };
