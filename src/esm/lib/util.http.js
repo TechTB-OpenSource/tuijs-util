@@ -1,4 +1,4 @@
-import { checkUrl } from './util.check';
+import { checkUrl } from './util.check.js';
 
 // Adds 'http://' if valid URL
 export function urlAddHttp(url) {

@@ -108,6 +108,12 @@ function checkIsArray$1(input) {
     throw new Error(er);
   }
 }
+
+/**
+ * Checks if an input value is an object.
+ * @param {*} input - Any variable
+ * @returns {boolean}
+ */
 function checkIsObject$1(input) {
   try {
     return input.constructor === Object;
@@ -452,13 +458,8 @@ var regex = /*#__PURE__*/Object.freeze({
 });
 
 const {
-  elmCleaner,
-  elmCleanerTr,
-  elmCleanerArray,
-  parseTemplate
-} = dom;
-const {
   checkEmail,
+  checkFqdn,
   checkIsArray,
   checkIsJson,
   checkIsList,
@@ -468,9 +469,14 @@ const {
   checkSpaces,
   checkSpecialChar,
   checkUppercase,
-  checkUrl,
-  checkFqdn
+  checkUrl
 } = check;
+const {
+  elmCleaner,
+  elmCleanerArray,
+  elmCleanerTr,
+  parseTemplate
+} = dom;
 const {
   reqFileJson,
   reqGet,
@@ -484,7 +490,8 @@ const {
 } = lists;
 const {
   addLeadZero,
-  generateUID
+  generateUID,
+  preloadImages
 } = misc;
 const {
   binary,
@@ -527,6 +534,7 @@ exports.lists = lists;
 exports.misc = misc;
 exports.numbers = numbers;
 exports.parseTemplate = parseTemplate;
+exports.preloadImages = preloadImages;
 exports.regex = regex;
 exports.removeChar = removeChar;
 exports.reqFileJson = reqFileJson;

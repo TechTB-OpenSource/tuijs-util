@@ -5,17 +5,10 @@ import * as lists from './lib/util.lists.js';
 import * as misc from './lib/util.misc.js';
 import * as regex from './lib/util.regex.js';
 
-export { dom };
-export const {
-    elmCleaner,
-    elmCleanerTr,
-    elmCleanerArray,
-    parseTemplate
-} = dom;
-
 export { check };
 export const {
     checkEmail,
+    checkFqdn,
     checkIsArray,
     checkIsJson,
     checkIsList,
@@ -25,9 +18,16 @@ export const {
     checkSpaces,
     checkSpecialChar,
     checkUppercase,
-    checkUrl,
-    checkFqdn
+    checkUrl
 } = check;
+
+export { dom };
+export const {
+    elmCleaner,
+    elmCleanerArray,
+    elmCleanerTr,
+    parseTemplate
+} = dom;
 
 export { http };
 export const {

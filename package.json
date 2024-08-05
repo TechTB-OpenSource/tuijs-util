@@ -1,6 +1,6 @@
 {
     "name": "ttbjs",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "module": "src/esm/index.js",
     "main": "src/cjs/index.cjs",
     "exports": {
