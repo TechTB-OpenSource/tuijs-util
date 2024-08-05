@@ -21,7 +21,7 @@ export function generateUID() {
 /**
  * Preloads images. Requires an array of image URL strings.
  */
-function preloadImages(imgUrls) {
+export function preloadImages(imgUrls) {
     imgUrls.forEach(url => {
         const img = new Image();
         img.src = url;
