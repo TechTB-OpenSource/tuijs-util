@@ -1,5 +1,5 @@
 {
-    "name": "ttbjs",
+    "name": "tuijs-util",
     "version": "1.1.4",
     "module": "src/esm/index.js",
     "main": "src/cjs/index.cjs",
@@ -12,7 +12,7 @@
     "description": "A simple JavaScript utility library",
     "author": "TechTB",
     "license": "MIT",
-    "repository": "github:TechTB-OpenSource/ttbjs",
+    "repository": "github:TechTB-OpenSource/tuijs-util",
     "type": "module",
     "scripts": {
         "roll": "rollup -c  rollup.config.js"
