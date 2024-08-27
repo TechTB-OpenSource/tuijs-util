@@ -411,10 +411,31 @@ function generateUID$1() {
   return 'uid-' + Date.now().toString(36) + '-' + Math.random().toString(36).substr(2);
 }
 
+/**
+ * Preloads images. Requires an array of image URL strings.
+ */
+function preloadImages$1(imgUrls) {
+  imgUrls.forEach(url => {
+    const img = new Image();
+    img.src = url;
+  });
+}
+
+/**
+ * Sleeps for a given number of milliseconds
+ * @param {number} ms - Provide number of milliseconds
+ * @returns {Promise} - Returns Promise once timeout finishes
+ */
+function sleep$1(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 var misc = /*#__PURE__*/Object.freeze({
     __proto__: null,
     addLeadZero: addLeadZero$1,
-    generateUID: generateUID$1
+    generateUID: generateUID$1,
+    preloadImages: preloadImages$1,
+    sleep: sleep$1
 });
 
 /**
@@ -491,7 +512,8 @@ const {
 const {
   addLeadZero,
   generateUID,
-  preloadImages
+  preloadImages,
+  sleep
 } = misc;
 const {
   binary,
@@ -541,6 +563,7 @@ exports.reqFileJson = reqFileJson;
 exports.reqGet = reqGet;
 exports.reqPostForm = reqPostForm;
 exports.reqPostJson = reqPostJson;
+exports.sleep = sleep;
 exports.special = special;
 exports.urlAddHttp = urlAddHttp;
 exports.urlAddHttps = urlAddHttps;

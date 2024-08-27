@@ -48,7 +48,8 @@ export { misc };
 export const {
     addLeadZero,
     generateUID,
-    preloadImages
+    preloadImages,
+    sleep
 } = misc;
 
 export { regex };

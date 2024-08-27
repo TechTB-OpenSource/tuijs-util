@@ -27,3 +27,12 @@ export function preloadImages(imgUrls) {
         img.src = url;
     });
 }
+
+/**
+ * Sleeps for a given number of milliseconds
+ * @param {number} ms - Provide number of milliseconds
+ * @returns {Promise} - Returns Promise once timeout finishes
+ */
+export function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
