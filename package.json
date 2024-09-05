@@ -1,6 +1,6 @@
 {
     "name": "tuijs-util",
-    "version": "1.1.5",
+    "version": "1.2.0",
     "module": "src/esm/index.js",
     "main": "src/cjs/index.cjs",
     "exports": {
@@ -10,7 +10,7 @@
       }
     },
     "description": "A simple JavaScript utility library",
-    "author": "TechTB",
+    "author": "TechTB LLC",
     "license": "MIT",
     "repository": "github:TechTB-OpenSource/tuijs-util",
     "type": "module",

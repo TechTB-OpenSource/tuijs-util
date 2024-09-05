@@ -1,7 +1,7 @@
 'use strict';
 
 // Checks for a valid FQDN (uses regex)
-function checkFqdn$1(str) {
+function checkFqdn(str) {
   if (typeof str !== "string" || str.length === 0 || str.length > 253) {
     return false;
   }
@@ -10,7 +10,7 @@ function checkFqdn$1(str) {
 }
 
 // Checks for a valid URL (uses regex)
-function checkUrl$1(str) {
+function checkUrl(str) {
   try {
     if (str === null || typeof str !== "string") {
       throw new Error(`Invalid input.`);
@@ -34,7 +34,7 @@ function checkUrl$1(str) {
 }
 
 // Checks for special characters (Returns true if it matches)
-function checkSpecialChar$1(str) {
+function checkSpecialChar(str) {
   try {
     if (str === null || typeof str !== "string") {
       throw new Error(`Invalid input.`);
@@ -51,7 +51,7 @@ function checkSpecialChar$1(str) {
 }
 
 // Checks for a valid Email (uses regex)
-function checkEmail$1(str) {
+function checkEmail(str) {
   try {
     if (str === null || typeof str !== "string") {
       throw new Error(`Invalid input.`);
@@ -68,7 +68,7 @@ function checkEmail$1(str) {
 }
 
 // Checks for a space in a string
-function checkSpaces$1(str) {
+function checkSpaces(str) {
   try {
     if (str === null || typeof str !== "string") {
       throw new Error(`Invalid input.`);
@@ -81,7 +81,7 @@ function checkSpaces$1(str) {
 }
 
 // Check for a list of text???
-function checkIsList$1(input) {
+function checkIsList(input) {
   try {
     // Check if the variable is a string
     if (typeof input !== 'string') {
@@ -101,7 +101,7 @@ function checkIsList$1(input) {
     throw new Error(er);
   }
 }
-function checkIsArray$1(input) {
+function checkIsArray(input) {
   try {
     return input.constructor === Array;
   } catch (er) {
@@ -114,14 +114,14 @@ function checkIsArray$1(input) {
  * @param {*} input - Any variable
  * @returns {boolean}
  */
-function checkIsObject$1(input) {
+function checkIsObject(input) {
   try {
     return input.constructor === Object;
   } catch (er) {
     throw new Error(er);
   }
 }
-function checkIsJson$1(input) {
+function checkIsJson(input) {
   try {
     JSON.parse(input);
     return true;
@@ -131,7 +131,7 @@ function checkIsJson$1(input) {
 }
 
 // Checks for number values in a string (Returns true if it matches)
-function checkNum$1(str) {
+function checkNum(str) {
   try {
     if (str === null || typeof str !== "string") {
       throw new Error(`Invalid input.`);
@@ -148,7 +148,7 @@ function checkNum$1(str) {
 }
 
 // Checks for lowercase characters (Returns true if it matches)
-function checkLowercase$1(str) {
+function checkLowercase(str) {
   try {
     if (str === null || typeof str !== "string") {
       throw new Error(`Invalid input.`);
@@ -165,7 +165,7 @@ function checkLowercase$1(str) {
 }
 
 // Checks for uppercase characters (Returns true if it matches)
-function checkUppercase$1(str) {
+function checkUppercase(str) {
   try {
     if (str === null || typeof str !== "string") {
       throw new Error(`Invalid input.`);
@@ -181,26 +181,10 @@ function checkUppercase$1(str) {
   }
 }
 
-var check = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    checkEmail: checkEmail$1,
-    checkFqdn: checkFqdn$1,
-    checkIsArray: checkIsArray$1,
-    checkIsJson: checkIsJson$1,
-    checkIsList: checkIsList$1,
-    checkIsObject: checkIsObject$1,
-    checkLowercase: checkLowercase$1,
-    checkNum: checkNum$1,
-    checkSpaces: checkSpaces$1,
-    checkSpecialChar: checkSpecialChar$1,
-    checkUppercase: checkUppercase$1,
-    checkUrl: checkUrl$1
-});
-
 /**
  * Takes an HTML template literal, parses it with the DOM parser, then extracts the element with querySelectorAll.
  */
-function elmCleaner$1(templateLit) {
+function elmCleaner(templateLit) {
   try {
     let parser = new DOMParser();
     let elmBody = parser.parseFromString(templateLit, 'text/html');
@@ -215,7 +199,7 @@ function elmCleaner$1(templateLit) {
 /**
  * Takes an HTML table row template literal, parses it with the DOM parser, then extracts the element with querySelectorAll.
  */
-function elmCleanerTr$1(templateLit) {
+function elmCleanerTr(templateLit) {
   try {
     let elmTemp = document.createElement('table');
     elmTemp.innerHTML = templateLit;
@@ -231,7 +215,7 @@ function elmCleanerTr$1(templateLit) {
 /**
  * Takes an HTML template literal, parses it with the DOM parser, then extracts the NodeList. The list is then returned as an array.
  */
-function elmCleanerArray$1(templateLit) {
+function elmCleanerArray(templateLit) {
   try {
     let parser = new DOMParser();
     let elmBody = parser.parseFromString(templateLit, 'text/html');
@@ -246,7 +230,7 @@ function elmCleanerArray$1(templateLit) {
 /**
  * Parses template literal with 'template' tag
  */
-function parseTemplate$1(templateLit) {
+function parseTemplate(templateLit) {
   try {
     let parser = new DOMParser();
     let doc = parser.parseFromString(templateLit, 'text/html');
@@ -261,18 +245,10 @@ function parseTemplate$1(templateLit) {
   }
 }
 
-var dom = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    elmCleaner: elmCleaner$1,
-    elmCleanerArray: elmCleanerArray$1,
-    elmCleanerTr: elmCleanerTr$1,
-    parseTemplate: parseTemplate$1
-});
-
 // Adds 'http://' if valid URL
-function urlAddHttp$1(url) {
+function urlAddHttp(url) {
   try {
-    if (url === null || !checkUrl$1(url)) {
+    if (url === null || !checkUrl(url)) {
       throw `Invalid input.`;
     }
     ;
@@ -286,9 +262,9 @@ function urlAddHttp$1(url) {
 }
 
 // Adds 'https://' if valid URL
-function urlAddHttps$1(url) {
+function urlAddHttps(url) {
   try {
-    if (url === null || !checkUrl$1(url)) {
+    if (url === null || !checkUrl(url)) {
       throw `Invalid input.`;
     }
     ;
@@ -302,7 +278,7 @@ function urlAddHttps$1(url) {
 }
 
 // Simple read JSON file utility
-async function reqFileJson$1(file) {
+async function reqFileJson(file) {
   try {
     const res = await fetch(file);
     if (!res.ok) {
@@ -316,7 +292,7 @@ async function reqFileJson$1(file) {
 }
 
 // Simple GET request - This is expecting JSON data from the target URL
-async function reqGet$1(url) {
+async function reqGet(url) {
   try {
     const res = await fetch(url, {
       method: 'GET'
@@ -332,7 +308,7 @@ async function reqGet$1(url) {
 
 // Simple POST request. export function is expecting JSON data. The JSON.parse will throw an error if data is not valid JSON.
 // NEEDS REVIEW
-async function reqPostJson$1(url, dataJson) {
+async function reqPostJson(url, dataJson) {
   try {
     if (dataJson === null || dataJson === undefined) {
       throw `No JSON data provided`;
@@ -355,7 +331,7 @@ async function reqPostJson$1(url, dataJson) {
 }
 // Simple POST request. export function is expecting FormData.
 // NEEDS REVIEW
-async function reqPostForm$1(url, dataForm) {
+async function reqPostForm(url, dataForm) {
   try {
     if (!(dataForm instanceof FormData)) {
       throw `The data provided was not form data`;
@@ -373,25 +349,10 @@ async function reqPostForm$1(url, dataForm) {
   }
 }
 
-var http = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    reqFileJson: reqFileJson$1,
-    reqGet: reqGet$1,
-    reqPostForm: reqPostForm$1,
-    reqPostJson: reqPostJson$1,
-    urlAddHttp: urlAddHttp$1,
-    urlAddHttps: urlAddHttps$1
-});
-
-const htmlTags$1 = ["html", "body", "div", "span", "applet", "object", "iframe", "h1", "h2", "h3", "h4", "h5", "h6", "p", "blockquote", "pre", "a", "abbr", "acronym", "address", "big", "cite", "code", "del", "dfn", "em", "img", "ins", "kbd", "q", "s", "samp", "small", "strike", "strong", "sub", "sup", "tt", "var", "b", "u", "i", "center", "dl", "dt", "dd", "ol", "ul", "li", "fieldset", "form", "label", "legend", "table", "caption", "tbody", "tfoot", "thead", "tr", "th", "td", "article", "aside", "canvas", "details", "embed", "figure", "figcaption", "footer", "header", "hgroup", "menu", "nav", "output", "ruby", "section", "summary", "time", "mark", "audio", "video"];
-
-var lists = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    htmlTags: htmlTags$1
-});
+const htmlTags = ["html", "body", "div", "span", "applet", "object", "iframe", "h1", "h2", "h3", "h4", "h5", "h6", "p", "blockquote", "pre", "a", "abbr", "acronym", "address", "big", "cite", "code", "del", "dfn", "em", "img", "ins", "kbd", "q", "s", "samp", "small", "strike", "strong", "sub", "sup", "tt", "var", "b", "u", "i", "center", "dl", "dt", "dd", "ol", "ul", "li", "fieldset", "form", "label", "legend", "table", "caption", "tbody", "tfoot", "thead", "tr", "th", "td", "article", "aside", "canvas", "details", "embed", "figure", "figcaption", "footer", "header", "hgroup", "menu", "nav", "output", "ruby", "section", "summary", "time", "mark", "audio", "video"];
 
 // Adds zero in front of numbers less than 10
-function addLeadZero$1(num) {
+function addLeadZero(num) {
   try {
     if (num === null || typeof num !== 'number' || num > 9) {
       throw `Invalid input.`;
@@ -407,14 +368,14 @@ function addLeadZero$1(num) {
 /**
  * Generates a unique ID
  */
-function generateUID$1() {
+function generateUID() {
   return 'uid-' + Date.now().toString(36) + '-' + Math.random().toString(36).substr(2);
 }
 
 /**
  * Preloads images. Requires an array of image URL strings.
  */
-function preloadImages$1(imgUrls) {
+function preloadImages(imgUrls) {
   imgUrls.forEach(url => {
     const img = new Image();
     img.src = url;
@@ -426,28 +387,20 @@ function preloadImages$1(imgUrls) {
  * @param {number} ms - Provide number of milliseconds
  * @returns {Promise} - Returns Promise once timeout finishes
  */
-function sleep$1(ms) {
+function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-var misc = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    addLeadZero: addLeadZero$1,
-    generateUID: generateUID$1,
-    preloadImages: preloadImages$1,
-    sleep: sleep$1
-});
 
 /**
  * List of RegEx variables for different patterns.
 */
-const letters$1 = /^[a-zA-Z]+$/;
-const lettersLower$1 = /^[a-z]+$/;
-const lettersUpper$1 = /^[A-Z]+$/;
-const numbers$1 = /^\d+$/;
-const binary$1 = /[^01]/g;
-const hexadecimal$1 = /[^0-9A-Fa-f]/g;
-const special$1 = /^[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\'\:\"\,\.\<\>\?\/]+$/;
+const letters = /^[a-zA-Z]+$/;
+const lettersLower = /^[a-z]+$/;
+const lettersUpper = /^[A-Z]+$/;
+const numbers = /^\d+$/;
+const binary = /[^01]/g;
+const hexadecimal = /[^0-9A-Fa-f]/g;
+const special = /^[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\'\:\"\,\.\<\>\?\/]+$/;
 
 /**
  * Removes characters from a string based on a provided regex pattern.
@@ -456,7 +409,7 @@ const special$1 = /^[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\'\:\"\,\.\<\>\?\/]
  * @return {string} The processed string with specified characters removed.
  * @throws {Error} Throws an error if the first parameter is not a string or if the second parameter is not a RegExp.
  */
-function removeChar$1(string, regex) {
+function removeChar(string, regex) {
   if (typeof string !== 'string') {
     throw new Error(`First parameter must be a string.`);
   }
@@ -466,69 +419,8 @@ function removeChar$1(string, regex) {
   return string.replace(regex, '');
 }
 
-var regex = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    binary: binary$1,
-    hexadecimal: hexadecimal$1,
-    letters: letters$1,
-    lettersLower: lettersLower$1,
-    lettersUpper: lettersUpper$1,
-    numbers: numbers$1,
-    removeChar: removeChar$1,
-    special: special$1
-});
-
-const {
-  checkEmail,
-  checkFqdn,
-  checkIsArray,
-  checkIsJson,
-  checkIsList,
-  checkIsObject,
-  checkLowercase,
-  checkNum,
-  checkSpaces,
-  checkSpecialChar,
-  checkUppercase,
-  checkUrl
-} = check;
-const {
-  elmCleaner,
-  elmCleanerArray,
-  elmCleanerTr,
-  parseTemplate
-} = dom;
-const {
-  reqFileJson,
-  reqGet,
-  reqPostForm,
-  reqPostJson,
-  urlAddHttp,
-  urlAddHttps
-} = http;
-const {
-  htmlTags
-} = lists;
-const {
-  addLeadZero,
-  generateUID,
-  preloadImages,
-  sleep
-} = misc;
-const {
-  binary,
-  hexadecimal,
-  letters,
-  lettersLower,
-  lettersUpper,
-  numbers,
-  removeChar,
-  special
-} = regex;
-
 exports.addLeadZero = addLeadZero;
 exports.binary = binary;
-exports.check = check;
 exports.checkEmail = checkEmail;
 exports.checkFqdn = checkFqdn;
 exports.checkIsArray = checkIsArray;
@@ -541,23 +433,18 @@ exports.checkSpaces = checkSpaces;
 exports.checkSpecialChar = checkSpecialChar;
 exports.checkUppercase = checkUppercase;
 exports.checkUrl = checkUrl;
-exports.dom = dom;
 exports.elmCleaner = elmCleaner;
 exports.elmCleanerArray = elmCleanerArray;
 exports.elmCleanerTr = elmCleanerTr;
 exports.generateUID = generateUID;
 exports.hexadecimal = hexadecimal;
 exports.htmlTags = htmlTags;
-exports.http = http;
 exports.letters = letters;
 exports.lettersLower = lettersLower;
 exports.lettersUpper = lettersUpper;
-exports.lists = lists;
-exports.misc = misc;
 exports.numbers = numbers;
 exports.parseTemplate = parseTemplate;
 exports.preloadImages = preloadImages;
-exports.regex = regex;
 exports.removeChar = removeChar;
 exports.reqFileJson = reqFileJson;
 exports.reqGet = reqGet;

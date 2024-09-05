@@ -7,15 +7,17 @@ A simple JavaScript utility library
 npm i tuijs-util
 
 ## Import
-All utilities are exported both as a module and individually. Simply import the module or the specific utility you want.
+All utilities are provide both in ESM and CJS formats. Simply specific utility you want.
 
-## Examples
+## ESM
 ```javascript
-import { utilFunctionName } from 'ttbjs';
+import { utilFunctionName, utilFunctionName2 } from 'ttbjs';
 utilFunctionName();
+utilFunctionName2();
 ```
-
+## CJS
 ```javascript
-import { utilModule } from 'ttbjs';
-utilModule.utilFunctionName();
+const { utilFunctionName, utilFunctionName2 } = require('ttbjs');
+utilFunctionName();
+utilFunctionName2();
 ```

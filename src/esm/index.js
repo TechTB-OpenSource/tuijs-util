@@ -1,12 +1,4 @@
-import * as check from './lib/util.check.js';
-import * as dom from './lib/util.dom.js';
-import * as http from './lib/util.http.js';
-import * as lists from './lib/util.lists.js';
-import * as misc from './lib/util.misc.js';
-import * as regex from './lib/util.regex.js';
-
-export { check };
-export const {
+export {
     checkEmail,
     checkFqdn,
     checkIsArray,
@@ -19,41 +11,31 @@ export const {
     checkSpecialChar,
     checkUppercase,
     checkUrl
-} = check;
-
-export { dom };
-export const {
+} from './lib/util.check.js';
+export {
     elmCleaner,
     elmCleanerArray,
     elmCleanerTr,
     parseTemplate
-} = dom;
-
-export { http };
-export const {
+} from './lib/util.dom.js';
+export {
     reqFileJson,
     reqGet,
     reqPostForm,
     reqPostJson,
     urlAddHttp,
     urlAddHttps
-} = http;
-
-export { lists };
-export const {
+} from './lib/util.http.js';
+export {
     htmlTags
-} = lists;
-
-export { misc };
-export const {
+} from './lib/util.lists.js';
+export {
     addLeadZero,
     generateUID,
     preloadImages,
     sleep
-} = misc;
-
-export { regex };
-export const {
+} from './lib/util.misc.js';
+export {
     binary,
     hexadecimal,
     letters,
@@ -62,4 +44,5 @@ export const {
     numbers,
     removeChar,
     special
-} = regex;
+} from './lib/util.regex.js';
+
