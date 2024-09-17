@@ -41,10 +41,15 @@ export function checkSpecialChar(str) {
     }
 }
 
-// Checks for a valid Email (uses regex)
+/**
+ * Determines if an input string is a valid email address using RegEx.
+ * @param {string} str - String input
+ * @returns {boolean} - Return false if the string is not an email and true if it is.
+ * @throws {Error} - Throws Error if input is not a string or if another error occurs.
+ */
 export function checkEmail(str) {
     try {
-        if (str === null || typeof str !== "string") {
+        if (str === null || typeof str !== 'string') {
             throw new Error(`Invalid input.`);
         };
         var validRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -53,7 +58,7 @@ export function checkEmail(str) {
         }
         return false;
     } catch (er) {
-        throw new Error(er);
+        throw new Error(er.message);
     }
 }
 
