@@ -36,13 +36,16 @@ export {
     sleep
 } from './lib/util.misc.js';
 export {
-    binary,
-    hexadecimal,
-    letters,
-    lettersLower,
-    lettersUpper,
-    numbers,
-    removeChar,
-    special
+    regExLetters,
+    regExLettersLower,
+    regExLettersUpper,
+    regExNumbers,
+    regExBinary,
+    regExHexadecimal,
+    regExSpecial,
+    regExFqdn,
+    regExUrl,
+    regExEmail,
+    removeChar
 } from './lib/util.regex.js';
 

@@ -1,70 +1,100 @@
-import { checkUrl } from './util.check.js';
+import { checkUrl, checkIsJson } from './util.check.js';
 
-// Adds 'http://' if valid URL
+/**
+ * Adds 'http://' if valid URL and 'http://' or 'https://' is missing.
+ * @param {string} url 
+ * @returns {string} - Returns an updated url string if necessary or returns the same string if url already starts with 'http://' or 'https://'.
+ * @throws {Error} - Throws Error if an error is detected.
+ */
 export function urlAddHttp(url) {
     try {
         if (url === null || !checkUrl(url)) {
-            throw `Invalid input.`;
+            throw new Error(`Invalid input.`);
         };
-        if (url.startsWith("http://") == false && url.startsWith("https://") == false) {
+        if (url.startsWith("http://") === false && url.startsWith("https://") === false) {
             url = "http://" + url
         }
         return url;
     } catch (er) {
-        throw new Error(er);
+        throw new Error(er.message);
     }
 }
 
-// Adds 'https://' if valid URL
+/**
+ * Adds 'https://' if valid URL and 'http://' or 'https://' is missing.
+ * @param {string} url 
+ * @returns {string} - Returns an updated url string if necessary or returns the same string if url already starts with 'http://' or 'https://'.
+ * @throws {Error} - Throws Error if an error is detected.
+ */
 export function urlAddHttps(url) {
     try {
         if (url === null || !checkUrl(url)) {
-            throw `Invalid input.`;
+            throw new Error(`Invalid input.`);
         };
-        if (url.startsWith("http://") == false && url.startsWith("https://") == false) {
+        if (url.startsWith("http://") === false && url.startsWith("https://") === false) {
             url = "https://" + url
         }
         return url;
     } catch (er) {
-        throw new Error(er);
+        throw new Error(er.message);
     }
 }
 
-// Simple read JSON file utility
-export async function reqFileJson(file) {
+/**
+ * Collects and parses data from a JSON file
+ * @async
+ * @param {string} filePath
+ * @returns {Promise<Object>} - Returns data if response is ok, otherwise it throws an Error.
+ * @throws {Error} - Throws Error if an error is detected.
+ */
+export async function reqFileJson(filePath) {
     try {
-        const res = await fetch(file);
+        const res = await fetch(filePath);
         if (!res.ok) {
-            return res;
+            throw new Error(res);
         }
         const data = await res.json();
         return data;
     } catch (er) {
-        throw new Error(er);
+        throw new Error(er.message);
     }
 }
 
-// Simple GET request - This is expecting JSON data from the target URL
+/**
+ * Sends GET request to specified URL
+ * @async
+ * @param {string} url
+ * @returns {Promise<Object>} - Returns response if response is ok, otherwise it throws an Error.
+ * @throws {Error} - Throws Error if an error is detected.
+ */
 export async function reqGet(url) {
     try {
         const res = await fetch(url, { method: 'GET' });
         if (!res.ok) {
-            throw res;
+            throw new Error(res);
         }
         return res;
     } catch (er) {
-        throw er;
+        throw new Error(er.message);
     }
 }
 
-// Simple POST request. export function is expecting JSON data. The JSON.parse will throw an error if data is not valid JSON.
-// NEEDS REVIEW
+/**
+ * Sends POST request to specified URL, which contains JSON data in the body.
+ * @async
+ * @param {string} url
+ * @param {JSON} dataJson
+ * @returns {Promise<Object>} - Returns response if response is ok, otherwise it throws an Error.
+ * @throws {Error} - Throws Error if an error is detected.
+ */
 export async function reqPostJson(url, dataJson) {
     try {
         if (dataJson === null || dataJson === undefined) {
-            throw `No JSON data provided`;
+            throw new Error(`No data provided.`);
         }
-        JSON.parse(dataJson);
+        if (!checkIsJson(dataJson)) {
+            throw new Error(`Provided data is not JSON.`);
+        }
         const res = await fetch(url, {
             method: 'POST',
             headers: {
@@ -73,15 +103,18 @@ export async function reqPostJson(url, dataJson) {
             body: dataJson
         });
         if (!res.ok) {
-            return res;
+            throw new Error(res);
         }
         return res;
     } catch (er) {
-        throw new Error(er);
+        throw new Error(er.message);
     }
 }
+
 // Simple POST request. export function is expecting FormData.
-// NEEDS REVIEW
+/**
+ * IN WORK
+ */
 export async function reqPostForm(url, dataForm) {
     try {
         if (!(dataForm instanceof FormData)) {
