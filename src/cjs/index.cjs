@@ -337,6 +337,12 @@ function elmCleanerArray(templateLit) {
 }
 
 /**
+ * @typedef {Array} ImageUrls - A list of image urls
+ * @property {string} imageUrl - The url of the desired image
+ * @property {Array<string>} imageUrlStrings - An Array of image url strings
+ */
+
+/**
  * Adds 'http://' if valid URL and 'http://' or 'https://' is missing.
  * @param {string} url 
  * @returns {string} - Returns an updated url string if necessary or returns the same string if url already starts with 'http://' or 'https://'.
@@ -514,22 +520,27 @@ function generateUID(length = 16) {
 }
 
 /**
- * @typedef {string[]} ImgUrls - An array of URL strings
+ * @typedef {string[]} ImageUrls - An array of URL strings
  */
 /**
- * Preloads images in cache.
- * @param {ImgUrls} imgUrls - An array of URL strings
- * @returns {void}
- * @throws {Error} - Throws an Error if loading an image fails.
+ * Loads all images and returns a promise when loading is complete
+ * @param {ImageUrls} imageUrls - An Array of image url strings
+ * @returns {Object}
  */
-function preloadImages(imgUrls) {
-  imgUrls.forEach(url => {
-    const img = new Image();
-    img.src = url;
-    img.onerror = () => {
-      throw new Error(`Failed to load image: ${url}`);
+async function preloadImages(imageUrls) {
+  try {
+    const loadImage = url => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(url);
+        img.onerror = () => reject(new Error(`Failed to load image at ${url}`));
+        img.src = url;
+      });
     };
-  });
+    await Promise.all(imageUrls.map(loadImage));
+  } catch (er) {
+    throw new Error(er.message);
+  }
 }
 
 /**
@@ -539,6 +550,33 @@ function preloadImages(imgUrls) {
  */
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * Adds and intersectionObserver for a list of target elements, that calls a function when 
+ * @param {Array} targets - An array of elements that will be attached to the observer.
+ * @param {Function} callback - The callback function that will run when the observer is triggered.
+ * @param {Object} observerOptions - An Object containing the observer options. By default only threshold is set.
+ * @returns {Function} - Returns a cleanup function that will disconnect the observer. This is not required to use.
+ */
+function scrollIntoView(targets, callback, observerOptions = {
+  threshold: 0.5
+}) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Only trigger when the element is intersecting
+        callback(entry.target);
+      }
+    });
+  }, observerOptions);
+  targets.forEach(target => {
+    observer.observe(target);
+  });
+  // Return a cleanup function to disconnect the observer
+  return () => {
+    observer.disconnect();
+  };
 }
 
 exports.addLeadZero = addLeadZero;
@@ -576,6 +614,7 @@ exports.reqFileJson = reqFileJson;
 exports.reqGet = reqGet;
 exports.reqPostForm = reqPostForm;
 exports.reqPostJson = reqPostJson;
+exports.scrollIntoView = scrollIntoView;
 exports.sleep = sleep;
 exports.urlAddHttp = urlAddHttp;
 exports.urlAddHttps = urlAddHttps;

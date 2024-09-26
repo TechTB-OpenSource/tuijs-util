@@ -16,7 +16,7 @@ export {
     elmCleaner,
     elmCleanerArray,
     elmCleanerTr,
-    parseTemplate
+    parseTemplate,
 } from './lib/util.dom.js';
 export {
     reqFileJson,
@@ -33,7 +33,8 @@ export {
     addLeadZero,
     generateUID,
     preloadImages,
-    sleep
+    sleep,
+    scrollIntoView
 } from './lib/util.misc.js';
 export {
     regExLetters,
