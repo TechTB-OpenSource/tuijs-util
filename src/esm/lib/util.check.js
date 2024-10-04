@@ -1,4 +1,4 @@
-import { regExNumbers, regExLettersLower, regExLettersUpper, regExSpecial, regExFqdn, regExUrl, regExEmail } from "./util.regex";
+import { regExNumbers, regExLettersLower, regExLettersUpper, regExSpecial, regExFqdn, regExUrl, regExEmail } from "./util.regex.js";
 
 /**
  * Checks for a valid FQDN (Uses RegEx).
