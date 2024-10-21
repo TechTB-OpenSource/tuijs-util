@@ -119,7 +119,7 @@ export function checkIsList(input) {
  */
 export function checkIsArray(input) {
     try {
-        return input.constructor === Array;
+        return Array.isArray(input);
     } catch (er) {
         throw new Error(er.message);
     }
@@ -133,7 +133,7 @@ export function checkIsArray(input) {
  */
 export function checkIsObject(input) {
     try {
-        return input.constructor === Object;
+        return input !== null && typeof input === 'object' && input.constructor === Object;
     } catch (er) {
         throw new Error(er.message);
     }
