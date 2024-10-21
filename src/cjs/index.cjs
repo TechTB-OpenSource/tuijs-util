@@ -167,7 +167,7 @@ function checkIsList(input) {
  */
 function checkIsArray(input) {
   try {
-    return input.constructor === Array;
+    return Array.isArray(input);
   } catch (er) {
     throw new Error(er.message);
   }
@@ -181,7 +181,7 @@ function checkIsArray(input) {
  */
 function checkIsObject(input) {
   try {
-    return input.constructor === Object;
+    return input !== null && typeof input === 'object' && input.constructor === Object;
   } catch (er) {
     throw new Error(er.message);
   }
