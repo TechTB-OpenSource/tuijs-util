@@ -2,6 +2,8 @@ export {
     checkEmail,
     checkFqdn,
     checkIsArray,
+    checkIsElement,
+    checkIsFunction,
     checkIsJson,
     checkIsObject,
     checkLowercase,

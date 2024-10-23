@@ -231,6 +231,34 @@ function checkIsJson(input) {
 }
 
 /**
+ * Checks an input to determine if it is an Element.
+ * @param {*} input 
+ * @returns {boolean} - Returns true if the input is an Element and false if not.
+ * @throws {Error} - Throws error message if error occurs.
+ */
+function checkIsElement(input) {
+  try {
+    return input instanceof Element;
+  } catch (er) {
+    throw new Error(`TUI Util Error: ${er.message}`);
+  }
+}
+
+/**
+ * Checks an input to determine if it is a Function.
+ * @param {*} input 
+ * @returns {boolean} - Returns true if the input is a Function and false if not.
+ * @throws {Error} - Throws error message if error occurs.
+ */
+function checkIsFunction(input) {
+  try {
+    return typeof input === 'function';
+  } catch (er) {
+    throw new Error(`TUI Util Error: ${er.message}`);
+  }
+}
+
+/**
  * Takes an HTML template literal, parses it, then extracts it.
  * All elements in the template MUST be contained within a single set of template tags.
  * THIS IS THE RECOMMENDED PARSER TO USE.
@@ -558,6 +586,8 @@ exports.addLeadZero = addLeadZero;
 exports.checkEmail = checkEmail;
 exports.checkFqdn = checkFqdn;
 exports.checkIsArray = checkIsArray;
+exports.checkIsElement = checkIsElement;
+exports.checkIsFunction = checkIsFunction;
 exports.checkIsJson = checkIsJson;
 exports.checkIsObject = checkIsObject;
 exports.checkLowercase = checkLowercase;

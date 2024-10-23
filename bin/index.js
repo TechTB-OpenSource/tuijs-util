@@ -17,7 +17,7 @@ const colors = {
 };
 
 /**
- * UPDATE THIS TO CREATE A NEW INDEX.HTML!!!!!
+ * UPDATE THIS TO CREATE A NEW INDEX.JS!!!!!
  */
 ex(process.argv.slice(2));
 
