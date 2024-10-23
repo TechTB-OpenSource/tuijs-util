@@ -238,7 +238,7 @@ function checkIsJson(input) {
  */
 function checkIsElement(input) {
   try {
-    return input instanceof Element;
+    return input instanceof Element || input instanceof Document || input instanceof Window || input instanceof DocumentFragment || input instanceof ShadowRoot;
   } catch (er) {
     throw new Error(`TUI Util Error: ${er.message}`);
   }
