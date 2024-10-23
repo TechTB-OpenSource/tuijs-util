@@ -13,7 +13,7 @@ export function checkFqdn(string) {
         }
         return regExFqdn.test(string);
     } catch (er) {
-        throw new Error(er.message);
+        throw new Error(`TUI Util Error: ${er.message}`);
     }
 }
 
@@ -31,7 +31,7 @@ export function checkUrl(string) {
         };
         return regExUrl.test(string); // Returns false if the url is invalid
     } catch (er) {
-        throw new Error(er.message);
+        throw new Error(`TUI Util Error: ${er.message}`);
     }
 }
 
@@ -48,108 +48,7 @@ export function checkSpecialChar(string) {
         };
         return regExSpecial.test(string);
     } catch (er) {
-        throw new Error(er.message);
-    }
-}
-
-/**
- * Checks for a valid email address. (Uses RegEx).
- * @param {string} string 
- * @returns {boolean} - Returns true if email pattern test is successful and false if the string is not validated or the RegEx test fails.
- * @throws {Error} - Throws error message if error occurs.
- */
-export function checkEmail(string) {
-    try {
-        if (typeof string !== 'string' || string.length === 0) {
-            return false;
-        };
-        return regExEmail.test(string);
-    } catch (er) {
-        throw new Error(er.message);
-    }
-}
-
-/**
- * Checks for a space in a string
- * @param {string} string 
- * @returns {boolean} - Returns true if space is found and false if the string is not validated or if a space is not found.
- * @throws {Error} - Throws error message if error occurs.
- */
-export function checkSpaces(string) {
-    try {
-        if (typeof string !== 'string' || string.length === 0) {
-            return false;
-        };
-        return str.indexOf(' ') >= 0;
-    } catch (er) {
-        throw new Error(er.message);
-    }
-}
-
-// Check for a list of text???
-/**
- * IN WORK
- */
-export function checkIsList(input) {
-    try {
-        // Check if the variable is a string
-        if (typeof input !== 'string') {
-            return false;
-        }
-        // Split the string by comma
-        const items = input.split(',');
-        // Check if all items are non-empty strings
-        for (let item of items) {
-            item = item.trim(); // Trim any leading or trailing whitespace
-            if (item === '') {
-                return false; // Empty item found
-            }
-        }
-        return true;
-    } catch (er) {
-        throw new Error(er.message);
-    }
-}
-
-/**
- * Checks an input to determine if it is an Array.
- * @param {*} input 
- * @returns {boolean} - Returns true if the input is an Array and false if not.
- * @throws {Error} - Throws error message if error occurs.
- */
-export function checkIsArray(input) {
-    try {
-        return Array.isArray(input);
-    } catch (er) {
-        throw new Error(er.message);
-    }
-}
-
-/**
- * Checks an input to determine if it is an Object.
- * @param {*} input 
- * @returns {boolean} - Returns true if the input is an Object and false if not.
- * @throws {Error} - Throws error message if error occurs.
- */
-export function checkIsObject(input) {
-    try {
-        return input !== null && typeof input === 'object' && input.constructor === Object;
-    } catch (er) {
-        throw new Error(er.message);
-    }
-}
-
-/**
- * Checks an input to determine if it is valid JSON.
- * @param {*} input 
- * @returns {boolean} - Returns true if the input is valid JSON and false if not.
- */
-export function checkIsJson(input) {
-    try {
-        JSON.parse(input);
-        return true;
-    } catch (er) {
-        return false;
+        throw new Error(`TUI Util Error: ${er.message}`);
     }
 }
 
@@ -166,7 +65,7 @@ export function checkNum(string) {
         };
         return regExNumbers.test(string);
     } catch (er) {
-        throw new Error(er.message);
+        throw new Error(`TUI Util Error: ${er.message}`);
     }
 }
 
@@ -183,7 +82,7 @@ export function checkLowercase(string) {
         };
         return regExLettersLower.test(string);
     } catch (er) {
-        throw new Error(er.message);
+        throw new Error(`TUI Util Error: ${er.message}`);
     }
 }
 
@@ -200,6 +99,110 @@ export function checkUppercase(string) {
         };
         return regExLettersUpper.test(string);
     } catch (er) {
-        throw new Error(er.message);
+        throw new Error(`TUI Util Error: ${er.message}`);
+    }
+}
+
+/**
+ * Checks for a valid email address. (Uses RegEx).
+ * @param {string} string 
+ * @returns {boolean} - Returns true if email pattern test is successful and false if the string is not validated or the RegEx test fails.
+ * @throws {Error} - Throws error message if error occurs.
+ */
+export function checkEmail(string) {
+    try {
+        if (typeof string !== 'string' || string.length === 0) {
+            return false;
+        };
+        return regExEmail.test(string);
+    } catch (er) {
+        throw new Error(`TUI Util Error: ${er.message}`);
+    }
+}
+
+/**
+ * Checks for a space in a string
+ * @param {string} string 
+ * @returns {boolean} - Returns true if space is found and false if the string is not validated or if a space is not found.
+ * @throws {Error} - Throws error message if error occurs.
+ */
+export function checkSpaces(string) {
+    try {
+        if (typeof string !== 'string' || string.length === 0) {
+            return false;
+        };
+        return str.indexOf(' ') >= 0;
+    } catch (er) {
+        throw new Error(`TUI Util Error: ${er.message}`);
+    }
+}
+
+/**
+ * Checks an input to determine if it is an Array.
+ * @param {*} input 
+ * @returns {boolean} - Returns true if the input is an Array and false if not.
+ * @throws {Error} - Throws error message if error occurs.
+ */
+export function checkIsArray(input) {
+    try {
+        return Array.isArray(input);
+    } catch (er) {
+        throw new Error(`TUI Util Error: ${er.message}`);
+    }
+}
+
+/**
+ * Checks an input to determine if it is an Object.
+ * @param {*} input 
+ * @returns {boolean} - Returns true if the input is an Object and false if not.
+ * @throws {Error} - Throws error message if error occurs.
+ */
+export function checkIsObject(input) {
+    try {
+        return input !== null && typeof input === 'object' && input.constructor === Object;
+    } catch (er) {
+        throw new Error(`TUI Util Error: ${er.message}`);
+    }
+}
+
+/**
+ * Checks an input to determine if it is valid JSON.
+ * @param {*} input 
+ * @returns {boolean} - Returns true if the input is valid JSON and false if not.
+ */
+export function checkIsJson(input) {
+    try {
+        const parsed = JSON.parse(input);
+        return (typeof parsed === 'object' || typeof parsed === 'number' || typeof parsed === 'boolean' || typeof parsed === 'string') && parsed !== null;
+    } catch (er) {
+        return false;
+    }
+}
+
+/**
+ * Checks an input to determine if it is an Element.
+ * @param {*} input 
+ * @returns {boolean} - Returns true if the input is an Element and false if not.
+ * @throws {Error} - Throws error message if error occurs.
+ */
+export function checkIsElement(input) {
+    try {
+        return input instanceof Element;
+    } catch (er) {
+        throw new Error(`TUI Util Error: ${er.message}`);
+    }
+}
+
+/**
+ * Checks an input to determine if it is a Function.
+ * @param {*} input 
+ * @returns {boolean} - Returns true if the input is a Function and false if not.
+ * @throws {Error} - Throws error message if error occurs.
+ */
+export function checkIsFunction(input) {
+    try {
+        return typeof input === 'function';
+    } catch (er) {
+        throw new Error(`TUI Util Error: ${er.message}`);
     }
 }

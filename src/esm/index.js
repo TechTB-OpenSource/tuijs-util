@@ -3,7 +3,6 @@ export {
     checkFqdn,
     checkIsArray,
     checkIsJson,
-    checkIsList,
     checkIsObject,
     checkLowercase,
     checkNum,
