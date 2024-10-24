@@ -340,12 +340,6 @@ function elmCleanerArray(templateLit) {
 }
 
 /**
- * @typedef {Array} ImageUrls - A list of image urls
- * @property {string} imageUrl - The url of the desired image
- * @property {Array<string>} imageUrlStrings - An Array of image url strings
- */
-
-/**
  * Adds 'http://' if valid URL and 'http://' or 'https://' is missing.
  * @param {string} url 
  * @returns {string} - Returns an updated url string if necessary or returns the same string if url already starts with 'http://' or 'https://'.
@@ -388,26 +382,6 @@ function urlAddHttps(url) {
 }
 
 /**
- * Collects and parses data from a JSON file
- * @async
- * @param {string} filePath
- * @returns {Promise<Object>} - Returns data if response is ok, otherwise it throws an Error.
- * @throws {Error} - Throws Error if an error is detected.
- */
-async function reqFileJson(filePath) {
-  try {
-    const res = await fetch(filePath);
-    if (!res.ok) {
-      throw new Error(res);
-    }
-    const data = await res.json();
-    return data;
-  } catch (er) {
-    throw new Error(er.message);
-  }
-}
-
-/**
  * Sends GET request to specified URL
  * @async
  * @param {string} url
@@ -423,6 +397,50 @@ async function reqGet(url) {
       throw new Error(res);
     }
     return res;
+  } catch (er) {
+    throw new Error(er.message);
+  }
+}
+
+/**
+ * Collects JSON data from a given url
+ * @async
+ * @param {string} url
+ * @returns {Promise<Object>} - Returns data if response is ok, otherwise it throws an Error.
+ * @throws {Error} - Throws Error if an error is detected.
+ */
+async function reqGetJson(url) {
+  try {
+    const res = await fetch(url, {
+      method: 'GET'
+    });
+    if (!res.ok) {
+      throw new Error(res);
+    }
+    const data = await res.json();
+    return data;
+  } catch (er) {
+    throw new Error(er.message);
+  }
+}
+
+/**
+ * Collects text data from a given url
+ * @async
+ * @param {string} url
+ * @returns {Promise<Object>} - Returns data if response is ok, otherwise it throws an Error.
+ * @throws {Error} - Throws Error if an error is detected.
+ */
+async function reqGetText(url) {
+  try {
+    const res = await fetch(url, {
+      method: 'GET'
+    });
+    if (!res.ok) {
+      throw new Error(res);
+    }
+    const data = await res.text();
+    return data;
   } catch (er) {
     throw new Error(er.message);
   }
@@ -460,14 +478,17 @@ async function reqPostJson(url, dataJson) {
   }
 }
 
-// Simple POST request. export function is expecting FormData.
 /**
- * IN WORK
+ * Sends POST request to specified URL, which contains FormData in the body.
+ * @param {string} url 
+ * @param {FormData} dataForm 
+ * @returns {Promise<Object>} - Returns response if response is ok, otherwise it throws an Error.
+ * @throws {Error} - Throws Error if an error is detected.
  */
 async function reqPostForm(url, dataForm) {
   try {
     if (!(dataForm instanceof FormData)) {
-      throw `The data provided was not form data`;
+      throw new Error(`The data provided was not form data`);
     }
     const res = await fetch(url, {
       method: 'POST',
@@ -478,7 +499,7 @@ async function reqPostForm(url, dataForm) {
     }
     return res;
   } catch (er) {
-    throw new Error(er);
+    throw new Error(er.message);
   }
 }
 
@@ -614,8 +635,9 @@ exports.regExNumbers = regExNumbers;
 exports.regExSpecial = regExSpecial;
 exports.regExUrl = regExUrl;
 exports.removeChar = removeChar;
-exports.reqFileJson = reqFileJson;
 exports.reqGet = reqGet;
+exports.reqGetJson = reqGetJson;
+exports.reqGetText = reqGetText;
 exports.reqPostForm = reqPostForm;
 exports.reqPostJson = reqPostJson;
 exports.scrollIntoView = scrollIntoView;

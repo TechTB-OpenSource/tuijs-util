@@ -78,9 +78,3 @@ export function elmCleanerArray(templateLit) {
         throw new Error(er.message);
     }
 }
-
-/**
- * @typedef {Array} ImageUrls - A list of image urls
- * @property {string} imageUrl - The url of the desired image
- * @property {Array<string>} imageUrlStrings - An Array of image url strings
- */

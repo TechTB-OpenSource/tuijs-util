@@ -41,26 +41,6 @@ export function urlAddHttps(url) {
 }
 
 /**
- * Collects and parses data from a JSON file
- * @async
- * @param {string} filePath
- * @returns {Promise<Object>} - Returns data if response is ok, otherwise it throws an Error.
- * @throws {Error} - Throws Error if an error is detected.
- */
-export async function reqFileJson(filePath) {
-    try {
-        const res = await fetch(filePath);
-        if (!res.ok) {
-            throw new Error(res);
-        }
-        const data = await res.json();
-        return data;
-    } catch (er) {
-        throw new Error(er.message);
-    }
-}
-
-/**
  * Sends GET request to specified URL
  * @async
  * @param {string} url
@@ -74,6 +54,46 @@ export async function reqGet(url) {
             throw new Error(res);
         }
         return res;
+    } catch (er) {
+        throw new Error(er.message);
+    }
+}
+
+/**
+ * Collects JSON data from a given url
+ * @async
+ * @param {string} url
+ * @returns {Promise<Object>} - Returns data if response is ok, otherwise it throws an Error.
+ * @throws {Error} - Throws Error if an error is detected.
+ */
+export async function reqGetJson(url) {
+    try {
+        const res = await fetch(url, { method: 'GET' });
+        if (!res.ok) {
+            throw new Error(res);
+        }
+        const data = await res.json();
+        return data;
+    } catch (er) {
+        throw new Error(er.message);
+    }
+}
+
+/**
+ * Collects text data from a given url
+ * @async
+ * @param {string} url
+ * @returns {Promise<Object>} - Returns data if response is ok, otherwise it throws an Error.
+ * @throws {Error} - Throws Error if an error is detected.
+ */
+export async function reqGetText(url) {
+    try {
+        const res = await fetch(url, { method: 'GET' });
+        if (!res.ok) {
+            throw new Error(res);
+        }
+        const data = await res.text();
+        return data;
     } catch (er) {
         throw new Error(er.message);
     }
@@ -111,14 +131,17 @@ export async function reqPostJson(url, dataJson) {
     }
 }
 
-// Simple POST request. export function is expecting FormData.
 /**
- * IN WORK
+ * Sends POST request to specified URL, which contains FormData in the body.
+ * @param {string} url 
+ * @param {FormData} dataForm 
+ * @returns {Promise<Object>} - Returns response if response is ok, otherwise it throws an Error.
+ * @throws {Error} - Throws Error if an error is detected.
  */
 export async function reqPostForm(url, dataForm) {
     try {
         if (!(dataForm instanceof FormData)) {
-            throw `The data provided was not form data`;
+            throw new Error(`The data provided was not form data`);
         }
         const res = await fetch(url, {
             method: 'POST',
@@ -129,6 +152,6 @@ export async function reqPostForm(url, dataForm) {
         }
         return res;
     } catch (er) {
-        throw new Error(er);
+        throw new Error(er.message);
     }
 }

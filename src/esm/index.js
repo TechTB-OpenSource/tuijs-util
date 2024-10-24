@@ -20,8 +20,9 @@ export {
     parseTemplate,
 } from './lib/util.dom.js';
 export {
-    reqFileJson,
     reqGet,
+    reqGetJson,
+    reqGetText,
     reqPostForm,
     reqPostJson,
     urlAddHttp,
