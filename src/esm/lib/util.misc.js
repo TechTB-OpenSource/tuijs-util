@@ -68,25 +68,46 @@ export function sleep(ms) {
 }
 
 /**
- * Adds and intersectionObserver for a list of target elements, that calls a function when 
- * @param {Array} targets - An array of elements that will be attached to the observer.
- * @param {Function} callback - The callback function that will run when the observer is triggered.
- * @param {Object} observerOptions - An Object containing the observer options. By default only threshold is set.
- * @returns {Function} - Returns a cleanup function that will disconnect the observer. This is not required to use.
+ *
  */
-export function scrollIntoView(targets, callback, observerOptions = { threshold: 0.5}) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {  // Only trigger when the element is intersecting
-                callback(entry.target);
+export function scrollIntoView() {
+    let allObservers = [];
+
+    function addObserver(targets, callback, observerOptions = { threshold: 0.5 }) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {  // Only trigger when the element is intersecting
+                    callback(entry.target);
+                }
+            });
+        }, observerOptions);
+        for (let i = 0; i < targets.length; i++) {
+            observer.observe(targets[i])
+            
+        }
+        allObservers.push(observer);
+    }
+
+    function removeNamedObserver(name) {
+        for (let i = 0; i < allObservers.length; i++) {
+            if (allObservers[i].name === name) {
+                allObservers[i].disconnect();
+                allObservers.splice(i, 1);
+                i--;
             }
-        });
-    }, observerOptions);
-    targets.forEach(target => {
-        observer.observe(target);
-    });
-    // Return a cleanup function to disconnect the observer
-    return () => {
-        observer.disconnect();
-    };
+        }
+    }
+
+    function removeAllObservers() {
+        for (let i = 0; i < allObservers.length; i++) {
+            allObservers[i].disconnect();
+        }
+        allObservers = [];
+    }
+
+    return {
+        addObserver,
+        removeNamedObserver,
+        removeAllObservers
+    }
 }
