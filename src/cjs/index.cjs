@@ -393,9 +393,6 @@ async function reqGet(url) {
     const res = await fetch(url, {
       method: 'GET'
     });
-    if (!res.ok) {
-      throw new Error(res);
-    }
     return res;
   } catch (er) {
     throw new Error(er.message);
@@ -414,9 +411,6 @@ async function reqGetJson(url) {
     const res = await fetch(url, {
       method: 'GET'
     });
-    if (!res.ok) {
-      throw new Error(res);
-    }
     const data = await res.json();
     return data;
   } catch (er) {
@@ -436,9 +430,6 @@ async function reqGetText(url) {
     const res = await fetch(url, {
       method: 'GET'
     });
-    if (!res.ok) {
-      throw new Error(res);
-    }
     const data = await res.text();
     return data;
   } catch (er) {
@@ -469,12 +460,9 @@ async function reqPostJson(url, dataJson) {
       },
       body: dataJson
     });
-    if (!res.ok) {
-      throw new Error(res);
-    }
     return res;
   } catch (er) {
-    throw new Error(er.message);
+    throw new Error(er);
   }
 }
 
@@ -494,12 +482,9 @@ async function reqPostForm(url, dataForm) {
       method: 'POST',
       body: dataForm
     });
-    if (!res.ok) {
-      return res;
-    }
     return res;
   } catch (er) {
-    throw new Error(er.message);
+    throw new Error(er);
   }
 }
 
