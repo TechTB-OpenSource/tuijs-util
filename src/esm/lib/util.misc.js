@@ -68,7 +68,7 @@ export function sleep(ms) {
 }
 
 /**
- *
+ * NEED TO ADD NAME AND JSDOC
  */
 export function scrollIntoView() {
     let allObservers = [];
