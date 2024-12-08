@@ -41,7 +41,7 @@ function removeChar(string, regEx) {
     }
     return string.replace(regEx, '');
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -58,7 +58,7 @@ function checkFqdn(string) {
     }
     return regExFqdn.test(string);
   } catch (er) {
-    throw new Error(`TUI Util Error: ${er.message}`);
+    console.error(er);
   }
 }
 
@@ -76,7 +76,7 @@ function checkUrl(string) {
     ;
     return regExUrl.test(string); // Returns false if the url is invalid
   } catch (er) {
-    throw new Error(`TUI Util Error: ${er.message}`);
+    console.error(er);
   }
 }
 
@@ -94,7 +94,7 @@ function checkSpecialChar(string) {
     ;
     return regExSpecial.test(string);
   } catch (er) {
-    throw new Error(`TUI Util Error: ${er.message}`);
+    console.error(er);
   }
 }
 
@@ -112,7 +112,7 @@ function checkNum(string) {
     ;
     return regExNumbers.test(string);
   } catch (er) {
-    throw new Error(`TUI Util Error: ${er.message}`);
+    console.error(er);
   }
 }
 
@@ -130,7 +130,7 @@ function checkLowercase(string) {
     ;
     return regExLettersLower.test(string);
   } catch (er) {
-    throw new Error(`TUI Util Error: ${er.message}`);
+    console.error(er);
   }
 }
 
@@ -148,7 +148,7 @@ function checkUppercase(string) {
     ;
     return regExLettersUpper.test(string);
   } catch (er) {
-    throw new Error(`TUI Util Error: ${er.message}`);
+    console.error(er);
   }
 }
 
@@ -166,7 +166,7 @@ function checkEmail(string) {
     ;
     return regExEmail.test(string);
   } catch (er) {
-    throw new Error(`TUI Util Error: ${er.message}`);
+    console.error(er);
   }
 }
 
@@ -184,7 +184,7 @@ function checkSpaces(string) {
     ;
     return str.indexOf(' ') >= 0;
   } catch (er) {
-    throw new Error(`TUI Util Error: ${er.message}`);
+    console.error(er);
   }
 }
 
@@ -198,7 +198,7 @@ function checkIsArray(input) {
   try {
     return Array.isArray(input);
   } catch (er) {
-    throw new Error(`TUI Util Error: ${er.message}`);
+    console.error(er);
   }
 }
 
@@ -212,7 +212,7 @@ function checkIsObject(input) {
   try {
     return input !== null && typeof input === 'object' && input.constructor === Object;
   } catch (er) {
-    throw new Error(`TUI Util Error: ${er.message}`);
+    console.error(er);
   }
 }
 
@@ -240,7 +240,7 @@ function checkIsElement(input) {
   try {
     return input instanceof Element || input instanceof Document || input instanceof Window || input instanceof DocumentFragment || input instanceof ShadowRoot;
   } catch (er) {
-    throw new Error(`TUI Util Error: ${er.message}`);
+    console.error(er);
   }
 }
 
@@ -254,7 +254,7 @@ function checkIsFunction(input) {
   try {
     return typeof input === 'function';
   } catch (er) {
-    throw new Error(`TUI Util Error: ${er.message}`);
+    console.error(er);
   }
 }
 
@@ -276,7 +276,7 @@ function parseTemplate(templateLit) {
     }
     return template.content;
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -294,7 +294,7 @@ function elmCleaner(templateLit) {
     let elms = elmBody.body.querySelectorAll("*");
     return elms[0];
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -315,7 +315,7 @@ function elmCleanerTr(templateLit) {
     elmTemp.remove();
     return elms;
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -335,7 +335,7 @@ function elmCleanerArray(templateLit) {
     let elms = elmBody.body.querySelectorAll("*");
     return Array.from(elms);
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -356,7 +356,7 @@ function urlAddHttp(url) {
     }
     return url;
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -377,7 +377,7 @@ function urlAddHttps(url) {
     }
     return url;
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -393,12 +393,9 @@ async function reqGet(url) {
     const res = await fetch(url, {
       method: 'GET'
     });
-    if (!res.ok) {
-      throw new Error(res);
-    }
     return res;
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -414,13 +411,10 @@ async function reqGetJson(url) {
     const res = await fetch(url, {
       method: 'GET'
     });
-    if (!res.ok) {
-      throw new Error(res);
-    }
     const data = await res.json();
     return data;
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -436,13 +430,10 @@ async function reqGetText(url) {
     const res = await fetch(url, {
       method: 'GET'
     });
-    if (!res.ok) {
-      throw new Error(res);
-    }
     const data = await res.text();
     return data;
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -469,12 +460,9 @@ async function reqPostJson(url, dataJson) {
       },
       body: dataJson
     });
-    if (!res.ok) {
-      throw new Error(res);
-    }
     return res;
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -494,16 +482,17 @@ async function reqPostForm(url, dataForm) {
       method: 'POST',
       body: dataForm
     });
-    if (!res.ok) {
-      return res;
-    }
     return res;
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
-const htmlTags = ["html", "body", "div", "span", "applet", "object", "iframe", "h1", "h2", "h3", "h4", "h5", "h6", "p", "blockquote", "pre", "a", "abbr", "acronym", "address", "big", "cite", "code", "del", "dfn", "em", "img", "ins", "kbd", "q", "s", "samp", "small", "strike", "strong", "sub", "sup", "tt", "var", "b", "u", "i", "center", "dl", "dt", "dd", "ol", "ul", "li", "fieldset", "form", "label", "legend", "table", "caption", "tbody", "tfoot", "thead", "tr", "th", "td", "article", "aside", "canvas", "details", "embed", "figure", "figcaption", "footer", "header", "hgroup", "menu", "nav", "output", "ruby", "section", "summary", "time", "mark", "audio", "video"];
+const listNumChar = '1234567890';
+const listUpChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const listLowChar = 'abcdefghijklmnopqrstuvwxyz';
+const listSpecChar = '!@#$%^&*()';
+const listHtmlTags = ["html", "body", "div", "span", "applet", "object", "iframe", "h1", "h2", "h3", "h4", "h5", "h6", "p", "blockquote", "pre", "a", "abbr", "acronym", "address", "big", "cite", "code", "del", "dfn", "em", "img", "ins", "kbd", "q", "s", "samp", "small", "strike", "strong", "sub", "sup", "tt", "var", "b", "u", "i", "center", "dl", "dt", "dd", "ol", "ul", "li", "fieldset", "form", "label", "legend", "table", "caption", "tbody", "tfoot", "thead", "tr", "th", "td", "article", "aside", "canvas", "details", "embed", "figure", "figcaption", "footer", "header", "hgroup", "menu", "nav", "output", "ruby", "section", "summary", "time", "mark", "audio", "video"];
 
 /**
  * Adds zero in front of numbers less than 10 and returns as a string.
@@ -520,7 +509,7 @@ function addLeadZero(num) {
     return "0" + num;
     ;
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -539,7 +528,7 @@ function generateUID(length = 16) {
     const randomPart = Math.random().toString(36).slice(2, 2 + length);
     return 'uid-' + timestampPart + '-' + randomPart;
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -563,7 +552,7 @@ async function preloadImages(imageUrls) {
     };
     await Promise.all(imageUrls.map(loadImage));
   } catch (er) {
-    throw new Error(er.message);
+    console.error(er);
   }
 }
 
@@ -577,30 +566,76 @@ function sleep(ms) {
 }
 
 /**
- * Adds and intersectionObserver for a list of target elements, that calls a function when 
- * @param {Array} targets - An array of elements that will be attached to the observer.
- * @param {Function} callback - The callback function that will run when the observer is triggered.
- * @param {Object} observerOptions - An Object containing the observer options. By default only threshold is set.
- * @returns {Function} - Returns a cleanup function that will disconnect the observer. This is not required to use.
+ * NEED TO ADD NAME AND JSDOC
  */
-function scrollIntoView(targets, callback, observerOptions = {
-  threshold: 0.5
-}) {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Only trigger when the element is intersecting
-        callback(entry.target);
+function scrollIntoView() {
+  let allObservers = [];
+  function addObserver(targets, callback, observerOptions = {
+    threshold: 0.5
+  }) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Only trigger when the element is intersecting
+          callback(entry.target);
+        }
+      });
+    }, observerOptions);
+    for (let i = 0; i < targets.length; i++) {
+      observer.observe(targets[i]);
+    }
+    allObservers.push(observer);
+  }
+  function removeNamedObserver(name) {
+    for (let i = 0; i < allObservers.length; i++) {
+      if (allObservers[i].name === name) {
+        allObservers[i].disconnect();
+        allObservers.splice(i, 1);
+        i--;
       }
-    });
-  }, observerOptions);
-  targets.forEach(target => {
-    observer.observe(target);
-  });
-  // Return a cleanup function to disconnect the observer
-  return () => {
-    observer.disconnect();
+    }
+  }
+  function removeAllObservers() {
+    for (let i = 0; i < allObservers.length; i++) {
+      allObservers[i].disconnect();
+    }
+    allObservers = [];
+  }
+  return {
+    addObserver,
+    removeNamedObserver,
+    removeAllObservers
   };
+}
+
+/**
+ * Parses a function and its parameters when it is in the form of a string.
+ * This can be used to embed function strings into custom HTML elements.
+ * The Function MUST exist in the window object.
+ * @param {string} string 
+ * @returns {Function} - Returns an executable function with its parameters
+ * @throws {Error} - Throws error message if error occurs.
+ */
+function parseFunctionString(string) {
+  try {
+    if (typeof string !== 'string' || string.trim() === '') {
+      throw new Error('Input must be a non-empty string.');
+    }
+    const match = string.match(/^(\w+)\((.*)\)$/); // Match "functionName(args)"
+    if (!match) {
+      throw new Error('Input does not match the expected pattern "functionName(args)".');
+    }
+    const [_, funcName, args] = match;
+    const func = window[funcName];
+    if (typeof func !== 'function') {
+      throw new Error(`"${funcName}" is not a valid function.`);
+    }
+    const parsedArgs = args.split(',').map(arg => arg.trim().replace(/^['"]|['"]$/g, '')) // Trim and remove quotes
+    .filter(arg => arg !== ''); // Remove empty strings from args
+    return () => func(...parsedArgs);
+  } catch (er) {
+    console.error(er);
+  }
 }
 
 exports.addLeadZero = addLeadZero;
@@ -621,7 +656,12 @@ exports.elmCleaner = elmCleaner;
 exports.elmCleanerArray = elmCleanerArray;
 exports.elmCleanerTr = elmCleanerTr;
 exports.generateUID = generateUID;
-exports.htmlTags = htmlTags;
+exports.listHtmlTags = listHtmlTags;
+exports.listLowChar = listLowChar;
+exports.listNumChar = listNumChar;
+exports.listSpecChar = listSpecChar;
+exports.listUpChar = listUpChar;
+exports.parseFunctionString = parseFunctionString;
 exports.parseTemplate = parseTemplate;
 exports.preloadImages = preloadImages;
 exports.regExBinary = regExBinary;

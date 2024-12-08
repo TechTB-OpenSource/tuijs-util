@@ -13,7 +13,7 @@ export function checkFqdn(string) {
         }
         return regExFqdn.test(string);
     } catch (er) {
-        throw new Error(`TUI Util Error: ${er.message}`);
+        console.error(er);
     }
 }
 
@@ -31,7 +31,7 @@ export function checkUrl(string) {
         };
         return regExUrl.test(string); // Returns false if the url is invalid
     } catch (er) {
-        throw new Error(`TUI Util Error: ${er.message}`);
+        console.error(er);
     }
 }
 
@@ -48,7 +48,7 @@ export function checkSpecialChar(string) {
         };
         return regExSpecial.test(string);
     } catch (er) {
-        throw new Error(`TUI Util Error: ${er.message}`);
+        console.error(er);
     }
 }
 
@@ -65,7 +65,7 @@ export function checkNum(string) {
         };
         return regExNumbers.test(string);
     } catch (er) {
-        throw new Error(`TUI Util Error: ${er.message}`);
+        console.error(er);
     }
 }
 
@@ -82,7 +82,7 @@ export function checkLowercase(string) {
         };
         return regExLettersLower.test(string);
     } catch (er) {
-        throw new Error(`TUI Util Error: ${er.message}`);
+        console.error(er);
     }
 }
 
@@ -99,7 +99,7 @@ export function checkUppercase(string) {
         };
         return regExLettersUpper.test(string);
     } catch (er) {
-        throw new Error(`TUI Util Error: ${er.message}`);
+        console.error(er);
     }
 }
 
@@ -116,7 +116,7 @@ export function checkEmail(string) {
         };
         return regExEmail.test(string);
     } catch (er) {
-        throw new Error(`TUI Util Error: ${er.message}`);
+        console.error(er);
     }
 }
 
@@ -133,7 +133,7 @@ export function checkSpaces(string) {
         };
         return str.indexOf(' ') >= 0;
     } catch (er) {
-        throw new Error(`TUI Util Error: ${er.message}`);
+        console.error(er);
     }
 }
 
@@ -147,7 +147,7 @@ export function checkIsArray(input) {
     try {
         return Array.isArray(input);
     } catch (er) {
-        throw new Error(`TUI Util Error: ${er.message}`);
+        console.error(er);
     }
 }
 
@@ -161,7 +161,7 @@ export function checkIsObject(input) {
     try {
         return input !== null && typeof input === 'object' && input.constructor === Object;
     } catch (er) {
-        throw new Error(`TUI Util Error: ${er.message}`);
+        console.error(er);
     }
 }
 
@@ -195,7 +195,7 @@ export function checkIsElement(input) {
             input instanceof ShadowRoot
         );
     } catch (er) {
-        throw new Error(`TUI Util Error: ${er.message}`);
+        console.error(er);
     }
 }
 
@@ -209,6 +209,6 @@ export function checkIsFunction(input) {
     try {
         return typeof input === 'function';
     } catch (er) {
-        throw new Error(`TUI Util Error: ${er.message}`);
+        console.error(er);
     }
 }

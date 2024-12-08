@@ -1,4 +1,8 @@
-export const htmlTags = [
+export const listNumChar = '1234567890';
+export const listUpChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+export const listLowChar = 'abcdefghijklmnopqrstuvwxyz';
+export const listSpecChar = '!@#$%^&*()';
+export const listHtmlTags = [
     "html",
     "body",
     "div",

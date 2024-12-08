@@ -29,7 +29,11 @@ export {
     urlAddHttps
 } from './lib/util.http.js';
 export {
-    htmlTags
+    listHtmlTags,
+    listLowChar,
+    listNumChar,
+    listSpecChar,
+    listUpChar
 } from './lib/util.lists.js';
 export {
     addLeadZero,
@@ -38,6 +42,9 @@ export {
     sleep,
     scrollIntoView
 } from './lib/util.misc.js';
+export {
+    parseFunctionString
+} from './lib/util.parse.js';
 export {
     regExLetters,
     regExLettersLower,

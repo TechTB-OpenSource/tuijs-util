@@ -16,7 +16,7 @@ export function urlAddHttp(url) {
         }
         return url;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -36,7 +36,7 @@ export function urlAddHttps(url) {
         }
         return url;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -50,12 +50,9 @@ export function urlAddHttps(url) {
 export async function reqGet(url) {
     try {
         const res = await fetch(url, { method: 'GET' });
-        if (!res.ok) {
-            throw new Error(res);
-        }
         return res;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -69,13 +66,10 @@ export async function reqGet(url) {
 export async function reqGetJson(url) {
     try {
         const res = await fetch(url, { method: 'GET' });
-        if (!res.ok) {
-            throw new Error(res);
-        }
         const data = await res.json();
         return data;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -89,13 +83,10 @@ export async function reqGetJson(url) {
 export async function reqGetText(url) {
     try {
         const res = await fetch(url, { method: 'GET' });
-        if (!res.ok) {
-            throw new Error(res);
-        }
         const data = await res.text();
         return data;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -122,12 +113,9 @@ export async function reqPostJson(url, dataJson) {
             },
             body: dataJson
         });
-        if (!res.ok) {
-            throw new Error(res);
-        }
         return res;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -147,11 +135,8 @@ export async function reqPostForm(url, dataForm) {
             method: 'POST',
             body: dataForm
         });
-        if (!res.ok) {
-            return res;
-        }
         return res;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }

@@ -34,6 +34,6 @@ export function removeChar(string, regEx) {
         }
         return string.replace(regEx, '');
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
