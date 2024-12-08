@@ -16,7 +16,7 @@ export function urlAddHttp(url) {
         }
         return url;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -36,7 +36,7 @@ export function urlAddHttps(url) {
         }
         return url;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -52,7 +52,7 @@ export async function reqGet(url) {
         const res = await fetch(url, { method: 'GET' });
         return res;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -69,7 +69,7 @@ export async function reqGetJson(url) {
         const data = await res.json();
         return data;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -86,7 +86,7 @@ export async function reqGetText(url) {
         const data = await res.text();
         return data;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -115,7 +115,7 @@ export async function reqPostJson(url, dataJson) {
         });
         return res;
     } catch (er) {
-        throw new Error(er);
+        console.error(er);
     }
 }
 
@@ -137,6 +137,6 @@ export async function reqPostForm(url, dataForm) {
         });
         return res;
     } catch (er) {
-        throw new Error(er);
+        console.error(er);
     }
 }

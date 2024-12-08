@@ -16,7 +16,7 @@ export function parseTemplate(templateLit) {
         }
         return template.content;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -34,7 +34,7 @@ export function elmCleaner(templateLit) {
         let elms = elmBody.body.querySelectorAll("*");
         return elms[0];
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -55,7 +55,7 @@ export function elmCleanerTr(templateLit) {
         elmTemp.remove();
         return elms;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -75,6 +75,6 @@ export function elmCleanerArray(templateLit) {
         let elms = elmBody.body.querySelectorAll("*");
         return Array.from(elms);
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }

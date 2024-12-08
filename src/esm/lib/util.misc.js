@@ -11,7 +11,7 @@ export function addLeadZero(num) {
         };
         return "0" + num;;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -30,7 +30,7 @@ export function generateUID(length = 16) {
         const randomPart = Math.random().toString(36).slice(2, 2 + length);
         return 'uid-' + timestampPart + '-' + randomPart;
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
@@ -54,7 +54,7 @@ export async function preloadImages(imageUrls) {
         };
         await Promise.all(imageUrls.map(loadImage));
     } catch (er) {
-        throw new Error(er.message);
+        console.error(er);
     }
 }
 
