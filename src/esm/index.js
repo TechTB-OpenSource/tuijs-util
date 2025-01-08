@@ -46,16 +46,20 @@ export {
     parseFunctionString
 } from './lib/util.parse.js';
 export {
+    regExBin,
+    regExBinChar,
+    regExBinNon,
+    regExEmail,
+    regExFqdn,
+    regExHex,
+    regExHexChar,
+    regExHexNon,
     regExLetters,
     regExLettersLower,
     regExLettersUpper,
     regExNumbers,
-    regExBinary,
-    regExHexadecimal,
     regExSpecial,
-    regExFqdn,
     regExUrl,
-    regExEmail,
     removeChar
 } from './lib/util.regex.js';
 
