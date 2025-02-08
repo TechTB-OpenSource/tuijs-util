@@ -20,6 +20,7 @@ export {
     parseTemplate,
 } from './lib/util.dom.js';
 export {
+    createReqInstance,
     reqGet,
     reqGetJson,
     reqGetText,

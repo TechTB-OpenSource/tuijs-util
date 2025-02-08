@@ -386,20 +386,152 @@ function urlAddHttps(url) {
 }
 
 /**
+
+ */
+async function createReqInstance() {
+  let controllers = new Map();
+  function createController(id) {
+    if (controllers.has(id)) {
+      abortRequest(id); // Ensure previous request is aborted
+    }
+    const controller = new AbortController();
+    controllers.set(id, controller);
+    return controller.signal;
+  }
+  function abortRequest(id) {
+    if (controllers.has(id)) {
+      controllers.get(id).abort();
+      controllers.delete(id);
+    }
+  }
+  function abortAll() {
+    controllers.forEach(controller => controller.abort());
+    controllers.clear();
+  }
+  async function reqGet(url, id) {
+    try {
+      const signal = createController(id);
+      const res = await fetch(url, {
+        method: 'GET',
+        signal
+      });
+      return res;
+    } catch (er) {
+      if (er.name === 'AbortError') {
+        console.warn('Fetch aborted:', url);
+      } else {
+        console.error(er);
+      }
+    }
+  }
+  async function reqGetJson(url, id) {
+    try {
+      const signal = createController(id);
+      const res = await fetch(url, {
+        method: 'GET',
+        signal
+      });
+      return await res.json();
+    } catch (er) {
+      if (er.name === 'AbortError') {
+        console.warn('Fetch aborted:', url);
+      } else {
+        console.error(er);
+      }
+    }
+  }
+  async function reqGetText(url, id) {
+    try {
+      const signal = createController(id);
+      const res = await fetch(url, {
+        method: 'GET',
+        signal
+      });
+      return await res.text();
+    } catch (er) {
+      if (er.name === 'AbortError') {
+        console.warn('Fetch aborted:', url);
+      } else {
+        console.error(er);
+      }
+    }
+  }
+  async function reqPostJson(url, dataJson, id) {
+    try {
+      const signal = createController(id);
+      if (!dataJson || typeof dataJson !== 'object') {
+        throw new Error(`Invalid JSON data`);
+      }
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataJson),
+        signal
+      });
+      return res;
+    } catch (er) {
+      if (er.name === 'AbortError') {
+        console.warn('Fetch aborted:', url);
+      } else {
+        console.error(er);
+      }
+    }
+  }
+  async function reqPostForm(url, dataForm, id) {
+    try {
+      const signal = createController(id);
+      if (!(dataForm instanceof FormData)) {
+        throw new Error(`Provided data is not FormData`);
+      }
+      const res = await fetch(url, {
+        method: 'POST',
+        body: dataForm,
+        signal
+      });
+      return res;
+    } catch (er) {
+      if (er.name === 'AbortError') {
+        console.warn('Fetch aborted:', url);
+      } else {
+        console.error(er);
+      }
+    }
+  }
+  return {
+    createController,
+    abortRequest,
+    abortAll,
+    reqGet: url => reqGet(url, id),
+    reqGetJson: url => reqGetJson(url, id),
+    reqGetText: url => reqGetText(url, id),
+    reqPostJson: (url, dataJson) => reqPostJson(url, dataJson, id),
+    reqPostForm: (url, dataForm) => reqPostForm(url, dataForm, id)
+  };
+}
+
+/**
  * Sends GET request to specified URL
  * @async
  * @param {string} url
+ * @param {  }
  * @returns {Promise<Object>} - Returns response if response is ok, otherwise it throws an Error.
  * @throws {Error} - Throws Error if an error is detected.
  */
-async function reqGet(url) {
+async function reqGet(url, signal = null) {
   try {
     const res = await fetch(url, {
-      method: 'GET'
+      method: 'GET',
+      signal
     });
     return res;
   } catch (er) {
-    console.error(er);
+    if (er.name === 'AbortError') {
+      console.warn('Fetch aborted:', url);
+    } else {
+      console.error(er);
+    }
   }
 }
 
@@ -410,15 +542,19 @@ async function reqGet(url) {
  * @returns {Promise<Object>} - Returns data if response is ok, otherwise it throws an Error.
  * @throws {Error} - Throws Error if an error is detected.
  */
-async function reqGetJson(url) {
+async function reqGetJson(url, signal = null) {
   try {
     const res = await fetch(url, {
-      method: 'GET'
+      method: 'GET',
+      signal
     });
-    const data = await res.json();
-    return data;
+    return await res.json();
   } catch (er) {
-    console.error(er);
+    if (er.name === 'AbortError') {
+      console.warn('Fetch aborted:', url);
+    } else {
+      console.error(er);
+    }
   }
 }
 
@@ -429,15 +565,19 @@ async function reqGetJson(url) {
  * @returns {Promise<Object>} - Returns data if response is ok, otherwise it throws an Error.
  * @throws {Error} - Throws Error if an error is detected.
  */
-async function reqGetText(url) {
+async function reqGetText(url, signal = null) {
   try {
     const res = await fetch(url, {
-      method: 'GET'
+      method: 'GET',
+      signal
     });
-    const data = await res.text();
-    return data;
+    return await res.text();
   } catch (er) {
-    console.error(er);
+    if (er.name === 'AbortError') {
+      console.warn('Fetch aborted:', url);
+    } else {
+      console.error(er);
+    }
   }
 }
 
@@ -449,24 +589,26 @@ async function reqGetText(url) {
  * @returns {Promise<Object>} - Returns response if response is ok, otherwise it throws an Error.
  * @throws {Error} - Throws Error if an error is detected.
  */
-async function reqPostJson(url, dataJson) {
+async function reqPostJson(url, dataJson, signal = null) {
   try {
-    if (dataJson === null || dataJson === undefined) {
-      throw new Error(`No data provided.`);
-    }
-    if (!checkIsJson(dataJson)) {
-      throw new Error(`Provided data is not JSON.`);
+    if (!dataJson || typeof dataJson !== 'object') {
+      throw new Error(`Invalid JSON data`);
     }
     const res = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: dataJson
+      body: JSON.stringify(dataJson),
+      signal
     });
     return res;
   } catch (er) {
-    console.error(er);
+    if (er.name === 'AbortError') {
+      console.warn('Fetch aborted:', url);
+    } else {
+      console.error(er);
+    }
   }
 }
 
@@ -477,18 +619,23 @@ async function reqPostJson(url, dataJson) {
  * @returns {Promise<Object>} - Returns response if response is ok, otherwise it throws an Error.
  * @throws {Error} - Throws Error if an error is detected.
  */
-async function reqPostForm(url, dataForm) {
+async function reqPostForm(url, dataForm, signal = null) {
   try {
     if (!(dataForm instanceof FormData)) {
-      throw new Error(`The data provided was not form data`);
+      throw new Error(`Provided data is not FormData`);
     }
     const res = await fetch(url, {
       method: 'POST',
-      body: dataForm
+      body: dataForm,
+      signal
     });
     return res;
   } catch (er) {
-    console.error(er);
+    if (er.name === 'AbortError') {
+      console.warn('Fetch aborted:', url);
+    } else {
+      console.error(er);
+    }
   }
 }
 
@@ -656,6 +803,7 @@ exports.checkSpaces = checkSpaces;
 exports.checkSpecialChar = checkSpecialChar;
 exports.checkUppercase = checkUppercase;
 exports.checkUrl = checkUrl;
+exports.createReqInstance = createReqInstance;
 exports.elmCleaner = elmCleaner;
 exports.elmCleanerArray = elmCleanerArray;
 exports.elmCleanerTr = elmCleanerTr;
