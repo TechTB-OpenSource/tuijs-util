@@ -1,4 +1,21 @@
-import { regExNumbers, regExLettersLower, regExLettersUpper, regExSpecial, regExFqdn, regExUrl, regExEmail } from "./util.regex.js";
+import {
+    regExNumbers,
+    regExLettersLower,
+    regExLettersUpper,
+    regExSpecial,
+    regExFqdn,
+    regExUrl,
+    regExEmail,
+    regExIpv4,
+    regExIpv6,
+    regExMacNoSeparator,
+    regExMacColonPairs,
+    regExMacColonQuads,
+    regExMacHyphenPairs,
+    regExMacHyphenQuads,
+    regExMacDotPairs,
+    regExMacDotQuads
+} from "./util.regex.js";
 
 /**
  * Checks for a valid FQDN (Uses RegEx).
@@ -29,10 +46,66 @@ export function checkUrl(string) {
         if (typeof string !== 'string' || string.length === 0) {
             return false;
         };
-        return regExUrl.test(string); // Returns false if the url is invalid
+        return regExUrl.test(string);
     } catch (er) {
         console.error(er);
     }
+}
+
+/**
+ * Checks for a valid Mac Address (Uses RegEx).
+ * @param {string} string 
+ * @returns {boolean} - Returns true if test is successful and false if the string is not validated or the RegEx test fails.
+ */
+export function checkMac(string) {
+    if (typeof string !== 'string' || string.length === 0) {
+        return false;
+    }
+    if (
+        regExMacNoSeparator.test(string) ||
+        regExMacColonPairs.test(string) ||
+        regExMacColonQuads.test(string) ||
+        regExMacHyphenPairs.test(string) ||
+        regExMacHyphenQuads.test(string) ||
+        regExMacDotPairs.test(string) ||
+        regExMacDotQuads.test(string)
+    ) {
+        return true;
+    }
+    return false;
+}
+
+/**
+ * Checks for a valid IP (Uses checkIpv4 and checkIpv6).
+ * @param {string} string 
+ * @returns {boolean} - Returns true if test is successful and false if the string is not validated or the RegEx test fails.
+ */
+export function checkIp(string) {
+    return checkIpv4(string) || checkIpv6(string);
+}
+
+/**
+ * Checks for a valid IPv4 (Uses RegEx).
+ * @param {string} string 
+ * @returns {boolean} - Returns true if test is successful and false if the string is not validated or the RegEx test fails.
+ */
+export function checkIpv4(string) {
+    if (typeof string !== 'string' || string.length === 0) {
+        return false;
+    }
+    return regExIpv4.test(string);
+}
+
+/**
+ * Checks for a valid IPv6 (Uses RegEx).
+ * @param {string} string 
+ * @returns {boolean} - Returns true if test is successful and false if the string is not validated or the RegEx test fails.
+ */
+export function checkIpv6(string) {
+    if (typeof string !== 'string' || string.length === 0) {
+        return false;
+    }
+    return regExIpv6.test(string);
 }
 
 /**

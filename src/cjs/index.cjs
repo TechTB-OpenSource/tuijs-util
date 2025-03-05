@@ -27,6 +27,15 @@ const regExUrl = new RegExp('^(https?:\\/\\/)?' +
 // query string
 '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
 const regExEmail = /^[\w-\.]+@([\w-]+\.)+[a-zA-Z]{2,}$/;
+const regExIpv4 = /^(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])$/;
+const regExIpv6 = /^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$/;
+const regExMacNoSeparator = /^[0-9a-fA-F]{12}$/;
+const regExMacHyphenPairs = /^[0-9a-fA-F]{2}(-[0-9a-fA-F]{2}){5}$/;
+const regExMacHyphenQuads = /^[0-9a-fA-F]{4}(-[0-9a-fA-F]{4}){2}$/;
+const regExMacDotPairs = /^[0-9a-fA-F]{2}(\.[0-9a-fA-F]{2}){5}$/;
+const regExMacDotQuads = /^[0-9a-fA-F]{4}(\.[0-9a-fA-F]{4}){2}$/;
+const regExMacColonPairs = /^[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}$/;
+const regExMacColonQuads = /^[0-9a-fA-F]{4}(:[0-9a-fA-F]{4}){2}$/;
 
 /**
  * Removes characters from a string based on a provided regex pattern.
@@ -78,10 +87,58 @@ function checkUrl(string) {
       return false;
     }
     ;
-    return regExUrl.test(string); // Returns false if the url is invalid
+    return regExUrl.test(string);
   } catch (er) {
     console.error(er);
   }
+}
+
+/**
+ * Checks for a valid Mac Address (Uses RegEx).
+ * @param {string} string 
+ * @returns {boolean} - Returns true if test is successful and false if the string is not validated or the RegEx test fails.
+ */
+function checkMac(string) {
+  if (typeof string !== 'string' || string.length === 0) {
+    return false;
+  }
+  if (regExMacNoSeparator.test(string) || regExMacColonPairs.test(string) || regExMacColonQuads.test(string) || regExMacHyphenPairs.test(string) || regExMacHyphenQuads.test(string) || regExMacDotPairs.test(string) || regExMacDotQuads.test(string)) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Checks for a valid IP (Uses checkIpv4 and checkIpv6).
+ * @param {string} string 
+ * @returns {boolean} - Returns true if test is successful and false if the string is not validated or the RegEx test fails.
+ */
+function checkIp(string) {
+  return checkIpv4(string) || checkIpv6(string);
+}
+
+/**
+ * Checks for a valid IPv4 (Uses RegEx).
+ * @param {string} string 
+ * @returns {boolean} - Returns true if test is successful and false if the string is not validated or the RegEx test fails.
+ */
+function checkIpv4(string) {
+  if (typeof string !== 'string' || string.length === 0) {
+    return false;
+  }
+  return regExIpv4.test(string);
+}
+
+/**
+ * Checks for a valid IPv6 (Uses RegEx).
+ * @param {string} string 
+ * @returns {boolean} - Returns true if test is successful and false if the string is not validated or the RegEx test fails.
+ */
+function checkIpv6(string) {
+  if (typeof string !== 'string' || string.length === 0) {
+    return false;
+  }
+  return regExIpv6.test(string);
 }
 
 /**
@@ -388,7 +445,7 @@ function urlAddHttps(url) {
 /**
 
  */
-async function createReqInstance() {
+function createReqInstance() {
   let controllers = new Map();
   function createController(id) {
     if (controllers.has(id)) {
@@ -503,11 +560,11 @@ async function createReqInstance() {
     createController,
     abortRequest,
     abortAll,
-    reqGet: url => reqGet(url, id),
-    reqGetJson: url => reqGetJson(url, id),
-    reqGetText: url => reqGetText(url, id),
-    reqPostJson: (url, dataJson) => reqPostJson(url, dataJson, id),
-    reqPostForm: (url, dataForm) => reqPostForm(url, dataForm, id)
+    reqGet,
+    reqGetJson,
+    reqGetText,
+    reqPostJson,
+    reqPostForm
   };
 }
 
@@ -792,12 +849,16 @@ function parseFunctionString(string) {
 exports.addLeadZero = addLeadZero;
 exports.checkEmail = checkEmail;
 exports.checkFqdn = checkFqdn;
+exports.checkIp = checkIp;
+exports.checkIpv4 = checkIpv4;
+exports.checkIpv6 = checkIpv6;
 exports.checkIsArray = checkIsArray;
 exports.checkIsElement = checkIsElement;
 exports.checkIsFunction = checkIsFunction;
 exports.checkIsJson = checkIsJson;
 exports.checkIsObject = checkIsObject;
 exports.checkLowercase = checkLowercase;
+exports.checkMac = checkMac;
 exports.checkNum = checkNum;
 exports.checkSpaces = checkSpaces;
 exports.checkSpecialChar = checkSpecialChar;
@@ -824,9 +885,18 @@ exports.regExFqdn = regExFqdn;
 exports.regExHex = regExHex;
 exports.regExHexChar = regExHexChar;
 exports.regExHexNon = regExHexNon;
+exports.regExIpv4 = regExIpv4;
+exports.regExIpv6 = regExIpv6;
 exports.regExLetters = regExLetters;
 exports.regExLettersLower = regExLettersLower;
 exports.regExLettersUpper = regExLettersUpper;
+exports.regExMacColonPairs = regExMacColonPairs;
+exports.regExMacColonQuads = regExMacColonQuads;
+exports.regExMacDotPairs = regExMacDotPairs;
+exports.regExMacDotQuads = regExMacDotQuads;
+exports.regExMacHyphenPairs = regExMacHyphenPairs;
+exports.regExMacHyphenQuads = regExMacHyphenQuads;
+exports.regExMacNoSeparator = regExMacNoSeparator;
 exports.regExNumbers = regExNumbers;
 exports.regExSpecial = regExSpecial;
 exports.regExUrl = regExUrl;

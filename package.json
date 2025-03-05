@@ -1,13 +1,13 @@
 {
     "name": "tuijs-util",
-    "version": "1.4.6",
+    "version": "1.4.7",
     "module": "src/esm/index.js",
     "main": "src/cjs/index.cjs",
     "exports": {
-      ".": {
-        "import": "./src/esm/index.js",
-        "require": "./src/cjs/index.cjs"
-      }
+        ".": {
+            "import": "./src/esm/index.js",
+            "require": "./src/cjs/index.cjs"
+        }
     },
     "description": "A simple JavaScript utility library",
     "author": "TechTB LLC",
@@ -15,11 +15,12 @@
     "repository": "github:TechTB-OpenSource/tuijs-util",
     "type": "module",
     "scripts": {
-        "build": "rollup -c  rollup.config.js"
+        "build": "rollup -c  rollup.config.js",
+        "list": "node bin\\index.js"
     },
     "devDependencies": {
         "@rollup/plugin-babel": "^6.0.4",
         "@rollup/plugin-node-resolve": "^16.0.0",
-        "rollup": "^4.30.1"
+        "rollup": "^4.34.9"
     }
 }
