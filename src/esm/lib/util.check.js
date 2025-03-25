@@ -285,3 +285,38 @@ export function checkIsFunction(input) {
         console.error(er);
     }
 }
+
+/**
+ * Checks an input to determine if it is a valid subnet mask.
+ * @param {string} mask 
+ * @returns {boolean} - Returns true if the input is a Function and false if not.
+ * @throws {Error} - Throws error message if error occurs.
+ */
+export function checkSubnetMask(mask) {
+    try {
+        if (typeof mask != 'string') {
+            return false;
+        }
+        const maskArray = mask.split('.').map(octet => parseInt(octet, 10));
+        if (maskArray.length !== 4) {
+            return false;
+        }
+        if (maskArray.some(num => Number.isNaN(num))) {
+            return false;
+        }
+        const binaryMask = maskArray
+            .map(num => num.toString(2).padStart(8, '0'))
+            .join('');
+        if (/01.*10/.test(binaryMask)) {
+            return false;
+        }
+        for (let i = 0; i < maskArray.length; i++) {
+            if (maskArray[i] > 255 || maskArray[i] < 0) {
+                return false;
+            }
+        }
+        return true;
+    } catch (er) {
+        console.error(er);
+    }
+}

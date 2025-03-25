@@ -14,6 +14,7 @@ export {
     checkNum,
     checkSpaces,
     checkSpecialChar,
+    checkSubnetMask,
     checkUppercase,
     checkUrl
 } from './lib/util.check.js';
@@ -38,14 +39,17 @@ export {
     listLowChar,
     listNumChar,
     listSpecChar,
+    listSubnets,
     listUpChar
 } from './lib/util.lists.js';
 export {
     addLeadZero,
+    convertBitsToMask,
+    convertMaskToBits,
     generateUID,
     preloadImages,
-    sleep,
-    scrollIntoView
+    scrollIntoView,
+    sleep
 } from './lib/util.misc.js';
 export {
     parseFunctionString

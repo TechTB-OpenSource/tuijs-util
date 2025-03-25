@@ -85,3 +85,33 @@ export const listHtmlTags = [
     "audio",
     "video"
 ];
+
+export const listSubnets = [
+    { bits: 8, cidr: '/8', subnetMask: '255.0.0.0', wildcardMask: '0.255.255.255', totalAddresses: 16_777_216, usableHosts: 16_777_214, networks: 1 },
+    { bits: 9, cidr: '/9', subnetMask: '255.128.0.0', wildcardMask: '0.127.255.255', totalAddresses: 8_388_608, usableHosts: 8_388_606, networks: 2 },
+    { bits: 10, cidr: '/10', subnetMask: '255.192.0.0', wildcardMask: '0.63.255.255', totalAddresses: 4_194_304, usableHosts: 4_194_302, networks: 4 },
+    { bits: 11, cidr: '/11', subnetMask: '255.224.0.0', wildcardMask: '0.31.255.255', totalAddresses: 2_097_152, usableHosts: 2_097_150, networks: 8 },
+    { bits: 12, cidr: '/12', subnetMask: '255.240.0.0', wildcardMask: '0.15.255.255', totalAddresses: 1_048_576, usableHosts: 1_048_574, networks: 16 },
+    { bits: 13, cidr: '/13', subnetMask: '255.248.0.0', wildcardMask: '0.7.255.255', totalAddresses: 524_288, usableHosts: 524_286, networks: 32 },
+    { bits: 14, cidr: '/14', subnetMask: '255.252.0.0', wildcardMask: '0.3.255.255', totalAddresses: 262_144, usableHosts: 262_142, networks: 64 },
+    { bits: 15, cidr: '/15', subnetMask: '255.254.0.0', wildcardMask: '0.1.255.255', totalAddresses: 131_072, usableHosts: 131_070, networks: 128 },
+    { bits: 16, cidr: '/16', subnetMask: '255.255.0.0', wildcardMask: '0.0.255.255', totalAddresses: 65_536, usableHosts: 65_534, networks: 256 },
+    { bits: 17, cidr: '/17', subnetMask: '255.255.128.0', wildcardMask: '0.0.127.255', totalAddresses: 32_768, usableHosts: 32_766, networks: 512 },
+    { bits: 18, cidr: '/18', subnetMask: '255.255.192.0', wildcardMask: '0.0.63.255', totalAddresses: 16_384, usableHosts: 16_382, networks: 1_024 },
+    { bits: 19, cidr: '/19', subnetMask: '255.255.224.0', wildcardMask: '0.0.31.255', totalAddresses: 8_192, usableHosts: 8_190, networks: 2_048 },
+    { bits: 20, cidr: '/20', subnetMask: '255.255.240.0', wildcardMask: '0.0.15.255', totalAddresses: 4_096, usableHosts: 4_094, networks: 4_096 },
+    { bits: 21, cidr: '/21', subnetMask: '255.255.248.0', wildcardMask: '0.0.7.255', totalAddresses: 2_048, usableHosts: 2_046, networks: 8_192 },
+    { bits: 22, cidr: '/22', subnetMask: '255.255.252.0', wildcardMask: '0.0.3.255', totalAddresses: 1_024, usableHosts: 1_022, networks: 16_384 },
+    { bits: 23, cidr: '/23', subnetMask: '255.255.254.0', wildcardMask: '0.0.1.255', totalAddresses: 512, usableHosts: 510, networks: 32_768 },
+    { bits: 24, cidr: '/24', subnetMask: '255.255.255.0', wildcardMask: '0.0.0.255', totalAddresses: 256, usableHosts: 254, networks: 65_536 },
+    { bits: 25, cidr: '/25', subnetMask: '255.255.255.128', wildcardMask: '0.0.0.127', totalAddresses: 128, usableHosts: 126, networks: 131_072 },
+    { bits: 26, cidr: '/26', subnetMask: '255.255.255.192', wildcardMask: '0.0.0.63', totalAddresses: 64, usableHosts: 62, networks: 262_144 },
+    { bits: 27, cidr: '/27', subnetMask: '255.255.255.224', wildcardMask: '0.0.0.31', totalAddresses: 32, usableHosts: 30, networks: 524_288 },
+    { bits: 28, cidr: '/28', subnetMask: '255.255.255.240', wildcardMask: '0.0.0.15', totalAddresses: 16, usableHosts: 14, networks: 1_048_576 },
+    { bits: 29, cidr: '/29', subnetMask: '255.255.255.248', wildcardMask: '0.0.0.7', totalAddresses: 8, usableHosts: 6, networks: 2_097_152 },
+    { bits: 30, cidr: '/30', subnetMask: '255.255.255.252', wildcardMask: '0.0.0.3', totalAddresses: 4, usableHosts: 2, networks: 4_194_304 },
+    { bits: 31, cidr: '/31', subnetMask: '255.255.255.254', wildcardMask: '0.0.0.1', totalAddresses: 2, usableHosts: '2 (P2P)', networks: 8_388_608 },
+    { bits: 32, cidr: '/32', subnetMask: '255.255.255.255', wildcardMask: '0.0.0.0', totalAddresses: 1, usableHosts: 0, networks: 16_777_216 }
+  ];
+  
+  

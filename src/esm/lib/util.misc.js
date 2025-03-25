@@ -1,3 +1,5 @@
+import { checkSubnetMask } from "./util.check.js";
+
 /**
  * Adds zero in front of numbers less than 10 and returns as a string.
  * @param {number} num 
@@ -83,7 +85,7 @@ export function scrollIntoView() {
         }, observerOptions);
         for (let i = 0; i < targets.length; i++) {
             observer.observe(targets[i])
-            
+
         }
         allObservers.push(observer);
     }
@@ -111,3 +113,40 @@ export function scrollIntoView() {
         removeAllObservers
     }
 }
+
+export function convertBitsToMask(bits) {
+    try {
+        if (bits < 0 || bits > 32) {
+            throw new Error("Bits must be between 0 and 32");
+        }
+        const mask = (0xffffffff << (32 - bits)) >>> 0;
+        return [
+            (mask >>> 24) & 0xff,
+            (mask >>> 16) & 0xff,
+            (mask >>> 8) & 0xff,
+            mask & 0xff
+        ].join('.');
+    } catch (er) {
+        console.error(er);
+        return;
+    }
+}
+
+export function convertMaskToBits(mask) {
+    try {
+        if (!checkSubnetMask(mask)) {
+            throw new Error("Invalid subnet mask.");
+        }
+        return maskArray
+            .map(num => num.toString(2).padStart(8, '0')) // ['11111111', '11111111', '11111111', '00000000']
+            .join('')                         // '11111111111111111111111100000000'
+            .split('')                        // ['1','1','1',...,'0','0']
+            .filter(bit => bit === '1')       // Keep only the '1's
+            .length;                          // Count them
+    } catch (er) {
+        console.error(er);
+        return;
+    }
+}
+
+
