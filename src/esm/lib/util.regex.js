@@ -11,7 +11,7 @@ export const regExBinNon = /[^01]/g; // Matches characters not in the binary ran
 export const regExHex = /^[0-9A-Fa-f]+$/; // Matches entire string for hexadecimal characters
 export const regExHexChar = /[0-9A-Fa-f]/g // Matches individual hexadecimal characters.
 export const regExHexNon = /[^0-9A-Fa-f]/g; // Matches characters not in the hexadecimal range
-export const regExSpecial = /^[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\:\'\"\,\.\<\>\/\?\`\\\~]+$/;
+export const regExAnySpecial = /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\:\'\"\,\.\<\>\/\?\`\\\~]/;
 export const regExFqdn = /^(?=.{1,253}$)(([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+([a-zA-Z]{2,}|[a-zA-Z0-9-]{2,}))$/;
 export const regExUrl = new RegExp('^(https?:\\/\\/)?' + // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
