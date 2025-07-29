@@ -243,7 +243,7 @@ function checkSpaces(string) {
       return false;
     }
     ;
-    return str.indexOf(' ') >= 0;
+    return string.indexOf(' ') >= 0;
   } catch (er) {
     console.error(er);
   }

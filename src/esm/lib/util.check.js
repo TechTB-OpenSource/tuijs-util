@@ -204,7 +204,7 @@ export function checkSpaces(string) {
         if (typeof string !== 'string' || string.length === 0) {
             return false;
         };
-        return str.indexOf(' ') >= 0;
+        return string.indexOf(' ') >= 0;
     } catch (er) {
         console.error(er);
     }
