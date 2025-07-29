@@ -2,7 +2,7 @@ import {
     regExNumbers,
     regExLettersLower,
     regExLettersUpper,
-    regExSpecial,
+    regExAnySpecial,
     regExFqdn,
     regExUrl,
     regExEmail,
@@ -111,7 +111,7 @@ export function checkIpv6(string) {
 /**
  * Checks for special characters (Uses RegEx).
  * @param {string} string 
- * @returns {boolean} - Returns true if a special character is found and false if the string is not validated or the RegEx test fails.
+ * @returns {boolean} - Returns true if any special character is found and false if the string is not validated or the RegEx test fails.
  * @throws {Error} - Throws error message if error occurs.
  */
 export function checkSpecialChar(string) {
@@ -119,7 +119,7 @@ export function checkSpecialChar(string) {
         if (typeof string !== 'string' || string.length === 0) {
             return false;
         };
-        return regExSpecial.test(string);
+        return regExAnySpecial.test(string);
     } catch (er) {
         console.error(er);
     }

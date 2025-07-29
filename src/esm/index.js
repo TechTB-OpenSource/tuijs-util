@@ -76,7 +76,7 @@ export {
     regExMacHyphenQuads,
     regExMacNoSeparator,
     regExNumbers,
-    regExSpecial,
+    regExAnySpecial,
     regExUrl,
     removeChar
 } from './lib/util.regex.js';

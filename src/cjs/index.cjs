@@ -13,7 +13,7 @@ const regExBinNon = /[^01]/g; // Matches characters not in the binary range
 const regExHex = /^[0-9A-Fa-f]+$/; // Matches entire string for hexadecimal characters
 const regExHexChar = /[0-9A-Fa-f]/g; // Matches individual hexadecimal characters.
 const regExHexNon = /[^0-9A-Fa-f]/g; // Matches characters not in the hexadecimal range
-const regExSpecial = /^[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\:\'\"\,\.\<\>\/\?\`\\\~]+$/;
+const regExAnySpecial = /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\:\'\"\,\.\<\>\/\?\`\\\~]/;
 const regExFqdn = /^(?=.{1,253}$)(([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+([a-zA-Z]{2,}|[a-zA-Z0-9-]{2,}))$/;
 const regExUrl = new RegExp('^(https?:\\/\\/)?' +
 // protocol
@@ -144,7 +144,7 @@ function checkIpv6(string) {
 /**
  * Checks for special characters (Uses RegEx).
  * @param {string} string 
- * @returns {boolean} - Returns true if a special character is found and false if the string is not validated or the RegEx test fails.
+ * @returns {boolean} - Returns true if any special character is found and false if the string is not validated or the RegEx test fails.
  * @throws {Error} - Throws error message if error occurs.
  */
 function checkSpecialChar(string) {
@@ -153,7 +153,7 @@ function checkSpecialChar(string) {
       return false;
     }
     ;
-    return regExSpecial.test(string);
+    return regExAnySpecial.test(string);
   } catch (er) {
     console.error(er);
   }
@@ -1142,6 +1142,7 @@ exports.listUpChar = listUpChar;
 exports.parseFunctionString = parseFunctionString;
 exports.parseTemplate = parseTemplate;
 exports.preloadImages = preloadImages;
+exports.regExAnySpecial = regExAnySpecial;
 exports.regExBin = regExBin;
 exports.regExBinChar = regExBinChar;
 exports.regExBinNon = regExBinNon;
@@ -1163,7 +1164,6 @@ exports.regExMacHyphenPairs = regExMacHyphenPairs;
 exports.regExMacHyphenQuads = regExMacHyphenQuads;
 exports.regExMacNoSeparator = regExMacNoSeparator;
 exports.regExNumbers = regExNumbers;
-exports.regExSpecial = regExSpecial;
 exports.regExUrl = regExUrl;
 exports.removeChar = removeChar;
 exports.reqGet = reqGet;
