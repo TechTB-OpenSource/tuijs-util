@@ -1,4 +1,4 @@
-import { checkSubnetMask } from "./util.check.js";
+import { checkSubnetMask } from "./_check.js";
 
 /**
  * Adds zero in front of numbers less than 10 and returns as a string.

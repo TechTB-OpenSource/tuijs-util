@@ -1,10 +1,10 @@
 #! /usr/bin/env node
-import * as utilCheck from '../src/esm/lib/util.check.js';
-import * as utilDom from '../src/esm/lib/util.dom.js';
-import * as utilHttp from '../src/esm/lib/util.http.js';
-import * as utilLists from '../src/esm/lib/util.lists.js';
-import * as utilMisc from '../src/esm/lib/util.misc.js';
-import * as utilRegex from '../src/esm/lib/util.regex.js';
+import * as utilCheck from '../src/esm/lib/_check.js';
+import * as utilDom from '../src/esm/lib/_dom.js';
+import * as utilHttp from '../src/esm/lib/_http.js';
+import * as utilLists from '../src/esm/lib/_lists.js';
+import * as utilMisc from '../src/esm/lib/_misc.js';
+import * as utilRegex from '../src/esm/lib/_regex.js';
 
 const colors = {
     reset: '\x1b[0m',

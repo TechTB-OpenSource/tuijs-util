@@ -1,4 +1,4 @@
-import { checkUrl, checkIsJson } from './util.check.js';
+import { checkUrl } from './_check.js';
 
 /**
  * Adds 'http://' if valid URL and 'http://' or 'https://' is missing.

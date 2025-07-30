@@ -3,14 +3,20 @@
 /**
  * List of RegEx variables for different patterns.
 */
-const regExLetters = /^[a-zA-Z]+$/;
-const regExLettersLower = /^[a-z]+$/;
-const regExLettersUpper = /^[A-Z]+$/;
-const regExNumbers = /^\d+$/;
-const regExBin = /^[01]+$/; // Matches entire string for binary characters
+const regExAllLetters = /^[a-zA-Z]+$/;
+const regExAnyLetter = /[a-zA-Z]/; // Matches if string contains any letter
+const regExAllLowercase = /^[a-z]+$/;
+const regExAnyLowercase = /[a-z]/; // Matches if string contains any lowercase letter
+const regExAllUppercase = /^[A-Z]+$/;
+const regExAnyUppercase = /[A-Z]/; // Matches if string contains any uppercase letter
+const regExAllNumbers = /^\d+$/;
+const regExAnyNumber = /\d/; // Matches if string contains any number
+const regExAllBin = /^[01]+$/; // Matches entire string for binary characters
+const regExAnyBin = /[01]/; // Matches if string contains any binary character
 const regExBinChar = /[01]/g; // Matches individual binary characters.
 const regExBinNon = /[^01]/g; // Matches characters not in the binary range
-const regExHex = /^[0-9A-Fa-f]+$/; // Matches entire string for hexadecimal characters
+const regExAllHex = /^[0-9A-Fa-f]+$/; // Matches entire string for hexadecimal characters
+const regExAnyHex = /[0-9A-Fa-f]/; // Matches if string contains any hexadecimal character
 const regExHexChar = /[0-9A-Fa-f]/g; // Matches individual hexadecimal characters.
 const regExHexNon = /[^0-9A-Fa-f]/g; // Matches characters not in the hexadecimal range
 const regExAnySpecial = /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\:\'\"\,\.\<\>\/\?\`\\\~]/;
@@ -147,7 +153,7 @@ function checkIpv6(string) {
  * @returns {boolean} - Returns true if any special character is found and false if the string is not validated or the RegEx test fails.
  * @throws {Error} - Throws error message if error occurs.
  */
-function checkSpecialChar(string) {
+function checkAnySpecialChar(string) {
   try {
     if (typeof string !== 'string' || string.length === 0) {
       return false;
@@ -165,13 +171,13 @@ function checkSpecialChar(string) {
  * @returns {boolean} - Returns true if a number is found and false if not.
  * @throws {Error} - Throws error message if error occurs.
  */
-function checkNum(string) {
+function checkAnyNum(string) {
   try {
     if (typeof string !== 'string' || string.length === 0) {
       return false;
     }
     ;
-    return regExNumbers.test(string);
+    return regExAnyNumber.test(string);
   } catch (er) {
     console.error(er);
   }
@@ -183,13 +189,13 @@ function checkNum(string) {
  * @returns {boolean} - Returns true if a lowercase character is found and false if not.
  * @throws {Error} - Throws error message if error occurs.
  */
-function checkLowercase(string) {
+function checkAnyLowercase(string) {
   try {
     if (typeof string !== 'string' || string.length === 0) {
       return false;
     }
     ;
-    return regExLettersLower.test(string);
+    return regExAnyLowercase.test(string);
   } catch (er) {
     console.error(er);
   }
@@ -201,13 +207,31 @@ function checkLowercase(string) {
  * @returns {boolean} - Returns true if a uppercase character is found and false if not.
  * @throws {Error} - Throws error message if error occurs.
  */
-function checkUppercase(string) {
+function checkAnyUppercase(string) {
   try {
     if (typeof string !== 'string' || string.length === 0) {
       return false;
     }
     ;
-    return regExLettersUpper.test(string);
+    return regExAnyUppercase.test(string);
+  } catch (er) {
+    console.error(er);
+  }
+}
+
+/**
+ * Checks for a space in a string
+ * @param {string} string 
+ * @returns {boolean} - Returns true if space is found and false if the string is not validated or if a space is not found.
+ * @throws {Error} - Throws error message if error occurs.
+ */
+function checkAnySpaces(string) {
+  try {
+    if (typeof string !== 'string' || string.length === 0) {
+      return false;
+    }
+    ;
+    return string.indexOf(' ') >= 0;
   } catch (er) {
     console.error(er);
   }
@@ -226,24 +250,6 @@ function checkEmail(string) {
     }
     ;
     return regExEmail.test(string);
-  } catch (er) {
-    console.error(er);
-  }
-}
-
-/**
- * Checks for a space in a string
- * @param {string} string 
- * @returns {boolean} - Returns true if space is found and false if the string is not validated or if a space is not found.
- * @throws {Error} - Throws error message if error occurs.
- */
-function checkSpaces(string) {
-  try {
-    if (typeof string !== 'string' || string.length === 0) {
-      return false;
-    }
-    ;
-    return string.indexOf(' ') >= 0;
   } catch (er) {
     console.error(er);
   }
@@ -1108,6 +1114,11 @@ function parseFunctionString(string) {
 }
 
 exports.addLeadZero = addLeadZero;
+exports.checkAnyLowercase = checkAnyLowercase;
+exports.checkAnyNum = checkAnyNum;
+exports.checkAnySpaces = checkAnySpaces;
+exports.checkAnySpecialChar = checkAnySpecialChar;
+exports.checkAnyUppercase = checkAnyUppercase;
 exports.checkEmail = checkEmail;
 exports.checkFqdn = checkFqdn;
 exports.checkIp = checkIp;
@@ -1118,13 +1129,8 @@ exports.checkIsElement = checkIsElement;
 exports.checkIsFunction = checkIsFunction;
 exports.checkIsJson = checkIsJson;
 exports.checkIsObject = checkIsObject;
-exports.checkLowercase = checkLowercase;
 exports.checkMac = checkMac;
-exports.checkNum = checkNum;
-exports.checkSpaces = checkSpaces;
-exports.checkSpecialChar = checkSpecialChar;
 exports.checkSubnetMask = checkSubnetMask;
-exports.checkUppercase = checkUppercase;
 exports.checkUrl = checkUrl;
 exports.convertBitsToMask = convertBitsToMask;
 exports.convertMaskToBits = convertMaskToBits;
@@ -1142,20 +1148,27 @@ exports.listUpChar = listUpChar;
 exports.parseFunctionString = parseFunctionString;
 exports.parseTemplate = parseTemplate;
 exports.preloadImages = preloadImages;
+exports.regExAllBin = regExAllBin;
+exports.regExAllHex = regExAllHex;
+exports.regExAllLetters = regExAllLetters;
+exports.regExAllLowercase = regExAllLowercase;
+exports.regExAllNumbers = regExAllNumbers;
+exports.regExAllUppercase = regExAllUppercase;
+exports.regExAnyBin = regExAnyBin;
+exports.regExAnyHex = regExAnyHex;
+exports.regExAnyLetter = regExAnyLetter;
+exports.regExAnyLowercase = regExAnyLowercase;
+exports.regExAnyNumber = regExAnyNumber;
 exports.regExAnySpecial = regExAnySpecial;
-exports.regExBin = regExBin;
+exports.regExAnyUppercase = regExAnyUppercase;
 exports.regExBinChar = regExBinChar;
 exports.regExBinNon = regExBinNon;
 exports.regExEmail = regExEmail;
 exports.regExFqdn = regExFqdn;
-exports.regExHex = regExHex;
 exports.regExHexChar = regExHexChar;
 exports.regExHexNon = regExHexNon;
 exports.regExIpv4 = regExIpv4;
 exports.regExIpv6 = regExIpv6;
-exports.regExLetters = regExLetters;
-exports.regExLettersLower = regExLettersLower;
-exports.regExLettersUpper = regExLettersUpper;
 exports.regExMacColonPairs = regExMacColonPairs;
 exports.regExMacColonQuads = regExMacColonQuads;
 exports.regExMacDotPairs = regExMacDotPairs;
@@ -1163,7 +1176,6 @@ exports.regExMacDotQuads = regExMacDotQuads;
 exports.regExMacHyphenPairs = regExMacHyphenPairs;
 exports.regExMacHyphenQuads = regExMacHyphenQuads;
 exports.regExMacNoSeparator = regExMacNoSeparator;
-exports.regExNumbers = regExNumbers;
 exports.regExUrl = regExUrl;
 exports.removeChar = removeChar;
 exports.reqGet = reqGet;

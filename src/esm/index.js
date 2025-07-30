@@ -1,4 +1,9 @@
 export {
+    checkAnyLowercase,
+    checkAnyNum,
+    checkAnySpaces,
+    checkAnySpecialChar,
+    checkAnyUppercase,
     checkEmail,
     checkFqdn,
     checkIp,
@@ -9,21 +14,16 @@ export {
     checkIsFunction,
     checkIsJson,
     checkIsObject,
-    checkLowercase,
     checkMac,
-    checkNum,
-    checkSpaces,
-    checkSpecialChar,
     checkSubnetMask,
-    checkUppercase,
     checkUrl
-} from './lib/util.check.js';
+} from './lib/_check.js';
 export {
     elmCleaner,
     elmCleanerArray,
     elmCleanerTr,
-    parseTemplate,
-} from './lib/util.dom.js';
+    parseTemplate
+} from './lib/_dom.js';
 export {
     createReqInstance,
     reqGet,
@@ -33,7 +33,7 @@ export {
     reqPostJson,
     urlAddHttp,
     urlAddHttps
-} from './lib/util.http.js';
+} from './lib/_http.js';
 export {
     listHtmlTags,
     listLowChar,
@@ -41,7 +41,7 @@ export {
     listSpecChar,
     listSubnets,
     listUpChar
-} from './lib/util.lists.js';
+} from './lib/_lists.js';
 export {
     addLeadZero,
     convertBitsToMask,
@@ -50,24 +50,32 @@ export {
     preloadImages,
     scrollIntoView,
     sleep
-} from './lib/util.misc.js';
+} from './lib/_misc.js';
 export {
     parseFunctionString
-} from './lib/util.parse.js';
+} from './lib/_parse.js';
 export {
-    regExBin,
+    regExAllBin,
+    regExAllHex,
+    regExAllLetters,
+    regExAllLowercase,
+    regExAllNumbers,
+    regExAllUppercase,
+    regExAnyBin,
+    regExAnyHex,
+    regExAnyLetter,
+    regExAnyLowercase,
+    regExAnyNumber,
+    regExAnySpecial,
+    regExAnyUppercase,
     regExBinChar,
     regExBinNon,
     regExEmail,
     regExFqdn,
-    regExHex,
     regExHexChar,
     regExHexNon,
     regExIpv4,
     regExIpv6,
-    regExLetters,
-    regExLettersLower,
-    regExLettersUpper,
     regExMacColonPairs,
     regExMacColonQuads,
     regExMacDotPairs,
@@ -75,9 +83,6 @@ export {
     regExMacHyphenPairs,
     regExMacHyphenQuads,
     regExMacNoSeparator,
-    regExNumbers,
-    regExAnySpecial,
     regExUrl,
     removeChar
-} from './lib/util.regex.js';
-
+} from './lib/_regex.js';

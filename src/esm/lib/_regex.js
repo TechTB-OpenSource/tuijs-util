@@ -1,14 +1,20 @@
 /**
  * List of RegEx variables for different patterns.
 */
-export const regExLetters = /^[a-zA-Z]+$/;
-export const regExLettersLower = /^[a-z]+$/;
-export const regExLettersUpper = /^[A-Z]+$/;
-export const regExNumbers = /^\d+$/;
-export const regExBin = /^[01]+$/; // Matches entire string for binary characters
+export const regExAllLetters = /^[a-zA-Z]+$/;
+export const regExAnyLetter = /[a-zA-Z]/; // Matches if string contains any letter
+export const regExAllLowercase = /^[a-z]+$/;
+export const regExAnyLowercase = /[a-z]/; // Matches if string contains any lowercase letter
+export const regExAllUppercase = /^[A-Z]+$/;
+export const regExAnyUppercase = /[A-Z]/; // Matches if string contains any uppercase letter
+export const regExAllNumbers = /^\d+$/;
+export const regExAnyNumber = /\d/; // Matches if string contains any number
+export const regExAllBin = /^[01]+$/; // Matches entire string for binary characters
+export const regExAnyBin = /[01]/; // Matches if string contains any binary character
 export const regExBinChar = /[01]/g; // Matches individual binary characters.
 export const regExBinNon = /[^01]/g; // Matches characters not in the binary range
-export const regExHex = /^[0-9A-Fa-f]+$/; // Matches entire string for hexadecimal characters
+export const regExAllHex = /^[0-9A-Fa-f]+$/; // Matches entire string for hexadecimal characters
+export const regExAnyHex = /[0-9A-Fa-f]/; // Matches if string contains any hexadecimal character
 export const regExHexChar = /[0-9A-Fa-f]/g // Matches individual hexadecimal characters.
 export const regExHexNon = /[^0-9A-Fa-f]/g; // Matches characters not in the hexadecimal range
 export const regExAnySpecial = /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\:\'\"\,\.\<\>\/\?\`\\\~]/;

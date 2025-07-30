@@ -1,6 +1,6 @@
 {
     "name": "tuijs-util",
-    "version": "1.4.12",
+    "version": "1.5.0",
     "module": "src/esm/index.js",
     "main": "src/cjs/index.cjs",
     "exports": {

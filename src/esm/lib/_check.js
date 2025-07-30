@@ -1,7 +1,7 @@
 import {
-    regExNumbers,
-    regExLettersLower,
-    regExLettersUpper,
+    regExAnyNumber,
+    regExAnyLowercase,
+    regExAnyUppercase,
     regExAnySpecial,
     regExFqdn,
     regExUrl,
@@ -15,7 +15,7 @@ import {
     regExMacHyphenQuads,
     regExMacDotPairs,
     regExMacDotQuads
-} from "./util.regex.js";
+} from "./_regex.js";
 
 /**
  * Checks for a valid FQDN (Uses RegEx).
@@ -114,7 +114,7 @@ export function checkIpv6(string) {
  * @returns {boolean} - Returns true if any special character is found and false if the string is not validated or the RegEx test fails.
  * @throws {Error} - Throws error message if error occurs.
  */
-export function checkSpecialChar(string) {
+export function checkAnySpecialChar(string) {
     try {
         if (typeof string !== 'string' || string.length === 0) {
             return false;
@@ -131,12 +131,12 @@ export function checkSpecialChar(string) {
  * @returns {boolean} - Returns true if a number is found and false if not.
  * @throws {Error} - Throws error message if error occurs.
  */
-export function checkNum(string) {
+export function checkAnyNum(string) {
     try {
         if (typeof string !== 'string' || string.length === 0) {
             return false;
         };
-        return regExNumbers.test(string);
+        return regExAnyNumber.test(string);
     } catch (er) {
         console.error(er);
     }
@@ -148,12 +148,12 @@ export function checkNum(string) {
  * @returns {boolean} - Returns true if a lowercase character is found and false if not.
  * @throws {Error} - Throws error message if error occurs.
  */
-export function checkLowercase(string) {
+export function checkAnyLowercase(string) {
     try {
         if (typeof string !== 'string' || string.length === 0) {
             return false;
         };
-        return regExLettersLower.test(string);
+        return regExAnyLowercase.test(string);
     } catch (er) {
         console.error(er);
     }
@@ -165,12 +165,29 @@ export function checkLowercase(string) {
  * @returns {boolean} - Returns true if a uppercase character is found and false if not.
  * @throws {Error} - Throws error message if error occurs.
  */
-export function checkUppercase(string) {
+export function checkAnyUppercase(string) {
     try {
         if (typeof string !== 'string' || string.length === 0) {
             return false;
         };
-        return regExLettersUpper.test(string);
+        return regExAnyUppercase.test(string);
+    } catch (er) {
+        console.error(er);
+    }
+}
+
+/**
+ * Checks for a space in a string
+ * @param {string} string 
+ * @returns {boolean} - Returns true if space is found and false if the string is not validated or if a space is not found.
+ * @throws {Error} - Throws error message if error occurs.
+ */
+export function checkAnySpaces(string) {
+    try {
+        if (typeof string !== 'string' || string.length === 0) {
+            return false;
+        };
+        return string.indexOf(' ') >= 0;
     } catch (er) {
         console.error(er);
     }
@@ -188,23 +205,6 @@ export function checkEmail(string) {
             return false;
         };
         return regExEmail.test(string);
-    } catch (er) {
-        console.error(er);
-    }
-}
-
-/**
- * Checks for a space in a string
- * @param {string} string 
- * @returns {boolean} - Returns true if space is found and false if the string is not validated or if a space is not found.
- * @throws {Error} - Throws error message if error occurs.
- */
-export function checkSpaces(string) {
-    try {
-        if (typeof string !== 'string' || string.length === 0) {
-            return false;
-        };
-        return string.indexOf(' ') >= 0;
     } catch (er) {
         console.error(er);
     }
