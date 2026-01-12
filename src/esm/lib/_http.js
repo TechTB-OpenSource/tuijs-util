@@ -173,14 +173,11 @@ export function createReqInstance() {
  */
 export async function reqGet(url, signal = null) {
     try {
-        const res = await fetch(url, { method: 'GET', signal });
+        const options = signal ? { method: 'GET', signal } : { method: 'GET' };
+        const res = await fetch(url, options);
         return res;
     } catch (er) {
-        if (er.name === 'AbortError') {
-            console.warn('Fetch aborted:', url);
-        } else {
-            console.error(er);
-        }
+        throw er;
     }
 }
 
@@ -193,14 +190,11 @@ export async function reqGet(url, signal = null) {
  */
 export async function reqGetJson(url, signal = null) {
     try {
-        const res = await fetch(url, { method: 'GET', signal });
+        const options = signal ? { method: 'GET', signal } : { method: 'GET' };        
+        const res = await fetch(url, options);
         return await res.json();
     } catch (er) {
-        if (er.name === 'AbortError') {
-            console.warn('Fetch aborted:', url);
-        } else {
-            console.error(er);
-        }
+        throw er;
     }
 }
 
@@ -213,14 +207,11 @@ export async function reqGetJson(url, signal = null) {
  */
 export async function reqGetText(url, signal = null) {
     try {
-        const res = await fetch(url, { method: 'GET', signal });
+        const options = signal ? { method: 'GET', signal } : { method: 'GET' };
+        const res = await fetch(url, options);
         return await res.text();
     } catch (er) {
-        if (er.name === 'AbortError') {
-            console.warn('Fetch aborted:', url);
-        } else {
-            console.error(er);
-        }
+        throw er;
     }
 }
 
@@ -237,19 +228,20 @@ export async function reqPostJson(url, dataJson, signal = null) {
         if (!dataJson || typeof dataJson !== 'object') {
             throw new Error(`Invalid JSON data`);
         }
-        const res = await fetch(url, {
+        const options = signal ? {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dataJson),
             signal
-        });
+        } : {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataJson)
+        };
+        const res = await fetch(url, options);
         return res;
     } catch (er) {
-        if (er.name === 'AbortError') {
-            console.warn('Fetch aborted:', url);
-        } else {
-            console.error(er);
-        }
+        throw er;
     }
 }
 
@@ -265,17 +257,17 @@ export async function reqPostForm(url, dataForm, signal = null) {
         if (!(dataForm instanceof FormData)) {
             throw new Error(`Provided data is not FormData`);
         }
-        const res = await fetch(url, {
+        const options = signal ? {
             method: 'POST',
             body: dataForm,
             signal
-        });
+        } : {
+            method: 'POST',
+            body: dataForm
+        };
+        const res = await fetch(url, options);
         return res;
     } catch (er) {
-        if (er.name === 'AbortError') {
-            console.warn('Fetch aborted:', url);
-        } else {
-            console.error(er);
-        }
+        throw er;
     }
 }

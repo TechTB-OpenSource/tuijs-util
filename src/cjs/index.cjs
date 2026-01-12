@@ -3,23 +3,36 @@
 /**
  * List of RegEx variables for different patterns.
 */
-const regExAllLetters = /^[a-zA-Z]+$/;
-const regExAnyLetter = /[a-zA-Z]/; // Matches if string contains any letter
-const regExAllLowercase = /^[a-z]+$/;
-const regExAnyLowercase = /[a-z]/; // Matches if string contains any lowercase letter
-const regExAllUppercase = /^[A-Z]+$/;
-const regExAnyUppercase = /[A-Z]/; // Matches if string contains any uppercase letter
-const regExAllNumbers = /^\d+$/;
-const regExAnyNumber = /\d/; // Matches if string contains any number
-const regExAllBin = /^[01]+$/; // Matches entire string for binary characters
-const regExAnyBin = /[01]/; // Matches if string contains any binary character
-const regExBinChar = /[01]/g; // Matches individual binary characters.
-const regExBinNon = /[^01]/g; // Matches characters not in the binary range
-const regExAllHex = /^[0-9A-Fa-f]+$/; // Matches entire string for hexadecimal characters
-const regExAnyHex = /[0-9A-Fa-f]/; // Matches if string contains any hexadecimal character
-const regExHexChar = /[0-9A-Fa-f]/g; // Matches individual hexadecimal characters.
-const regExHexNon = /[^0-9A-Fa-f]/g; // Matches characters not in the hexadecimal range
-const regExAnySpecial = /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\:\'\"\,\.\<\>\/\?\`\\\~]/;
+const regExAllLetter = /^[a-zA-Z]+$/; // Matches strings containing only letters
+const regExAnyLetter = /[a-zA-Z]/g; // Finds/matches/replaces any letters in a string
+const regExNotLetter = /^[^a-zA-Z]+$/; // Matches strings containing no letters
+const regExNonLetter = /[^a-zA-Z]/g; // Finds/matches/replaces any non-letter characters in a string
+const regExAllLowercase = /^[a-z]+$/; // Matches strings containing only lowercase letters
+const regExAnyLowercase = /[a-z]/g; // Finds/matches/replaces any lowercase letters in a string
+const regExNotLowercase = /^[^a-z]+$/; // Matches strings containing no lowercase letters
+const regExNonLowercase = /[^a-z]/g; // Finds/matches/replaces any non-lowercase characters in a string
+const regExAllUppercase = /^[A-Z]+$/; // Matches strings containing only uppercase letters
+const regExAnyUppercase = /[A-Z]/g; // Finds/matches/replaces any uppercase letters in a string
+const regExNotUppercase = /^[^A-Z]+$/; // Matches strings containing no uppercase letters
+const regExNonUppercase = /[^A-Z]/g; // Finds/matches/replaces any non-uppercase characters in a string
+const regExAllNumber = /^[0-9]+$/; // Matches strings containing only numbers
+const regExAnyNumber = /[0-9]/g; // Finds/matches/replaces any numbers in a string
+const regExNotNumber = /^[^0-9]+$/; // Matches strings containing no numbers
+const regExNonNumber = /[^0-9]/g; // Finds/matches/replaces any non-number characters in a string
+const regExAllBin = /^[01]+$/; // Matches strings containing only binary characters
+const regExAnyBin = /[01]/g; // Finds/matches/replaces any binary characters in a string
+const regExNotBin = /^[^01]+$/; // Matches strings containing no binary characters
+const regExNonBin = /[^01]/g; // Finds/matches/replaces any non-binary characters in a string
+const regExAllOct = /^[0-7]+$/; // Matches strings containing only octal characters
+const regExAnyOct = /[0-7]/g; // Finds/matches/replaces any octal characters in a string
+const regExNotOct = /^[^0-7]+$/; // Matches strings containing no octal characters
+const regExNonOct = /[^0-7]/g; // Finds/matches/replaces any non-octal characters in a string
+const regExAllHex = /^[0-9A-Fa-f]+$/; // Matches strings containing only hexadecimal characters
+const regExAnyHex = /[0-9A-Fa-f]/g; // Finds/matches/replaces any hexadecimal characters in a string
+const regExNotHex = /^[^0-9A-Fa-f]+$/; // Matches strings containing no hexadecimal characters
+const regExNonHex = /[^0-9A-Fa-f]/g; // Finds/matches/replaces any non-hexadecimal characters in a string
+const regExAnySpecial = /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\:\'\"\,\.\<\>\/\?\`\\\~]/g; // Finds/matches/replaces any special characters in a string
+const regExNotSpecial = /^[^\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\:\'\"\,\.\<\>\/\?\`\\\~]+$/; // Matches strings containing no special characters
 const regExFqdn = /^(?=.{1,253}$)(([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+([a-zA-Z]{2,}|[a-zA-Z0-9-]{2,}))$/;
 const regExUrl = new RegExp('^(https?:\\/\\/)?' +
 // protocol
@@ -617,17 +630,16 @@ function createReqInstance() {
  */
 async function reqGet(url, signal = null) {
   try {
-    const res = await fetch(url, {
+    const options = signal ? {
       method: 'GET',
       signal
-    });
+    } : {
+      method: 'GET'
+    };
+    const res = await fetch(url, options);
     return res;
   } catch (er) {
-    if (er.name === 'AbortError') {
-      console.warn('Fetch aborted:', url);
-    } else {
-      console.error(er);
-    }
+    throw er;
   }
 }
 
@@ -640,17 +652,16 @@ async function reqGet(url, signal = null) {
  */
 async function reqGetJson(url, signal = null) {
   try {
-    const res = await fetch(url, {
+    const options = signal ? {
       method: 'GET',
       signal
-    });
+    } : {
+      method: 'GET'
+    };
+    const res = await fetch(url, options);
     return await res.json();
   } catch (er) {
-    if (er.name === 'AbortError') {
-      console.warn('Fetch aborted:', url);
-    } else {
-      console.error(er);
-    }
+    throw er;
   }
 }
 
@@ -663,17 +674,16 @@ async function reqGetJson(url, signal = null) {
  */
 async function reqGetText(url, signal = null) {
   try {
-    const res = await fetch(url, {
+    const options = signal ? {
       method: 'GET',
       signal
-    });
+    } : {
+      method: 'GET'
+    };
+    const res = await fetch(url, options);
     return await res.text();
   } catch (er) {
-    if (er.name === 'AbortError') {
-      console.warn('Fetch aborted:', url);
-    } else {
-      console.error(er);
-    }
+    throw er;
   }
 }
 
@@ -690,21 +700,24 @@ async function reqPostJson(url, dataJson, signal = null) {
     if (!dataJson || typeof dataJson !== 'object') {
       throw new Error(`Invalid JSON data`);
     }
-    const res = await fetch(url, {
+    const options = signal ? {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(dataJson),
       signal
-    });
+    } : {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataJson)
+    };
+    const res = await fetch(url, options);
     return res;
   } catch (er) {
-    if (er.name === 'AbortError') {
-      console.warn('Fetch aborted:', url);
-    } else {
-      console.error(er);
-    }
+    throw er;
   }
 }
 
@@ -720,18 +733,18 @@ async function reqPostForm(url, dataForm, signal = null) {
     if (!(dataForm instanceof FormData)) {
       throw new Error(`Provided data is not FormData`);
     }
-    const res = await fetch(url, {
+    const options = signal ? {
       method: 'POST',
       body: dataForm,
       signal
-    });
+    } : {
+      method: 'POST',
+      body: dataForm
+    };
+    const res = await fetch(url, options);
     return res;
   } catch (er) {
-    if (er.name === 'AbortError') {
-      console.warn('Fetch aborted:', url);
-    } else {
-      console.error(er);
-    }
+    throw er;
   }
 }
 
@@ -1150,23 +1163,21 @@ exports.parseTemplate = parseTemplate;
 exports.preloadImages = preloadImages;
 exports.regExAllBin = regExAllBin;
 exports.regExAllHex = regExAllHex;
-exports.regExAllLetters = regExAllLetters;
+exports.regExAllLetter = regExAllLetter;
 exports.regExAllLowercase = regExAllLowercase;
-exports.regExAllNumbers = regExAllNumbers;
+exports.regExAllNumber = regExAllNumber;
+exports.regExAllOct = regExAllOct;
 exports.regExAllUppercase = regExAllUppercase;
 exports.regExAnyBin = regExAnyBin;
 exports.regExAnyHex = regExAnyHex;
 exports.regExAnyLetter = regExAnyLetter;
 exports.regExAnyLowercase = regExAnyLowercase;
 exports.regExAnyNumber = regExAnyNumber;
+exports.regExAnyOct = regExAnyOct;
 exports.regExAnySpecial = regExAnySpecial;
 exports.regExAnyUppercase = regExAnyUppercase;
-exports.regExBinChar = regExBinChar;
-exports.regExBinNon = regExBinNon;
 exports.regExEmail = regExEmail;
 exports.regExFqdn = regExFqdn;
-exports.regExHexChar = regExHexChar;
-exports.regExHexNon = regExHexNon;
 exports.regExIpv4 = regExIpv4;
 exports.regExIpv6 = regExIpv6;
 exports.regExMacColonPairs = regExMacColonPairs;
@@ -1176,6 +1187,21 @@ exports.regExMacDotQuads = regExMacDotQuads;
 exports.regExMacHyphenPairs = regExMacHyphenPairs;
 exports.regExMacHyphenQuads = regExMacHyphenQuads;
 exports.regExMacNoSeparator = regExMacNoSeparator;
+exports.regExNonBin = regExNonBin;
+exports.regExNonHex = regExNonHex;
+exports.regExNonLetter = regExNonLetter;
+exports.regExNonLowercase = regExNonLowercase;
+exports.regExNonNumber = regExNonNumber;
+exports.regExNonOct = regExNonOct;
+exports.regExNonUppercase = regExNonUppercase;
+exports.regExNotBin = regExNotBin;
+exports.regExNotHex = regExNotHex;
+exports.regExNotLetter = regExNotLetter;
+exports.regExNotLowercase = regExNotLowercase;
+exports.regExNotNumber = regExNotNumber;
+exports.regExNotOct = regExNotOct;
+exports.regExNotSpecial = regExNotSpecial;
+exports.regExNotUppercase = regExNotUppercase;
 exports.regExUrl = regExUrl;
 exports.removeChar = removeChar;
 exports.reqGet = reqGet;

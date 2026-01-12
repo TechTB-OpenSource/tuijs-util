@@ -1,23 +1,36 @@
 /**
  * List of RegEx variables for different patterns.
 */
-export const regExAllLetters = /^[a-zA-Z]+$/;
-export const regExAnyLetter = /[a-zA-Z]/; // Matches if string contains any letter
-export const regExAllLowercase = /^[a-z]+$/;
-export const regExAnyLowercase = /[a-z]/; // Matches if string contains any lowercase letter
-export const regExAllUppercase = /^[A-Z]+$/;
-export const regExAnyUppercase = /[A-Z]/; // Matches if string contains any uppercase letter
-export const regExAllNumbers = /^\d+$/;
-export const regExAnyNumber = /\d/; // Matches if string contains any number
-export const regExAllBin = /^[01]+$/; // Matches entire string for binary characters
-export const regExAnyBin = /[01]/; // Matches if string contains any binary character
-export const regExBinChar = /[01]/g; // Matches individual binary characters.
-export const regExBinNon = /[^01]/g; // Matches characters not in the binary range
-export const regExAllHex = /^[0-9A-Fa-f]+$/; // Matches entire string for hexadecimal characters
-export const regExAnyHex = /[0-9A-Fa-f]/; // Matches if string contains any hexadecimal character
-export const regExHexChar = /[0-9A-Fa-f]/g // Matches individual hexadecimal characters.
-export const regExHexNon = /[^0-9A-Fa-f]/g; // Matches characters not in the hexadecimal range
-export const regExAnySpecial = /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\:\'\"\,\.\<\>\/\?\`\\\~]/;
+export const regExAllLetter = /^[a-zA-Z]+$/; // Matches strings containing only letters
+export const regExAnyLetter = /[a-zA-Z]/g; // Finds/matches/replaces any letters in a string
+export const regExNotLetter = /^[^a-zA-Z]+$/; // Matches strings containing no letters
+export const regExNonLetter = /[^a-zA-Z]/g; // Finds/matches/replaces any non-letter characters in a string
+export const regExAllLowercase = /^[a-z]+$/; // Matches strings containing only lowercase letters
+export const regExAnyLowercase = /[a-z]/g; // Finds/matches/replaces any lowercase letters in a string
+export const regExNotLowercase = /^[^a-z]+$/; // Matches strings containing no lowercase letters
+export const regExNonLowercase = /[^a-z]/g; // Finds/matches/replaces any non-lowercase characters in a string
+export const regExAllUppercase = /^[A-Z]+$/; // Matches strings containing only uppercase letters
+export const regExAnyUppercase = /[A-Z]/g; // Finds/matches/replaces any uppercase letters in a string
+export const regExNotUppercase = /^[^A-Z]+$/; // Matches strings containing no uppercase letters
+export const regExNonUppercase = /[^A-Z]/g; // Finds/matches/replaces any non-uppercase characters in a string
+export const regExAllNumber = /^[0-9]+$/; // Matches strings containing only numbers
+export const regExAnyNumber = /[0-9]/g; // Finds/matches/replaces any numbers in a string
+export const regExNotNumber = /^[^0-9]+$/; // Matches strings containing no numbers
+export const regExNonNumber = /[^0-9]/g; // Finds/matches/replaces any non-number characters in a string
+export const regExAllBin = /^[01]+$/; // Matches strings containing only binary characters
+export const regExAnyBin = /[01]/g; // Finds/matches/replaces any binary characters in a string
+export const regExNotBin = /^[^01]+$/; // Matches strings containing no binary characters
+export const regExNonBin = /[^01]/g; // Finds/matches/replaces any non-binary characters in a string
+export const regExAllOct = /^[0-7]+$/; // Matches strings containing only octal characters
+export const regExAnyOct = /[0-7]/g; // Finds/matches/replaces any octal characters in a string
+export const regExNotOct = /^[^0-7]+$/; // Matches strings containing no octal characters
+export const regExNonOct = /[^0-7]/g; // Finds/matches/replaces any non-octal characters in a string
+export const regExAllHex = /^[0-9A-Fa-f]+$/; // Matches strings containing only hexadecimal characters
+export const regExAnyHex = /[0-9A-Fa-f]/g; // Finds/matches/replaces any hexadecimal characters in a string
+export const regExNotHex = /^[^0-9A-Fa-f]+$/; // Matches strings containing no hexadecimal characters
+export const regExNonHex = /[^0-9A-Fa-f]/g; // Finds/matches/replaces any non-hexadecimal characters in a string
+export const regExAnySpecial = /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\:\'\"\,\.\<\>\/\?\`\\\~]/g; // Finds/matches/replaces any special characters in a string
+export const regExNotSpecial = /^[^\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\|\;\:\'\"\,\.\<\>\/\?\`\\\~]+$/; // Matches strings containing no special characters
 export const regExFqdn = /^(?=.{1,253}$)(([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+([a-zA-Z]{2,}|[a-zA-Z0-9-]{2,}))$/;
 export const regExUrl = new RegExp('^(https?:\\/\\/)?' + // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
