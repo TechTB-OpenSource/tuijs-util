@@ -1,8 +1,8 @@
-export const listNumChar = '1234567890';
-export const listUpChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-export const listLowChar = 'abcdefghijklmnopqrstuvwxyz';
-export const listSpecChar = '!@#$%^&*()';
-export const listHtmlTags = [
+export const listNumChar: string = '1234567890';
+export const listUpChar: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+export const listLowChar: string = 'abcdefghijklmnopqrstuvwxyz';
+export const listSpecChar: string = '!@#$%^&*()';
+export const listHtmlTags: string[] = [
     "html",
     "body",
     "div",
@@ -86,7 +86,7 @@ export const listHtmlTags = [
     "video"
 ];
 
-export const listSubnets = [
+export const listSubnets: { bits: number; cidr: string; subnetMask: string; wildcardMask: string; totalAddresses: number; usableHosts: number | string; networks: number }[] = [
     { bits: 8, cidr: '/8', subnetMask: '255.0.0.0', wildcardMask: '0.255.255.255', totalAddresses: 16_777_216, usableHosts: 16_777_214, networks: 1 },
     { bits: 9, cidr: '/9', subnetMask: '255.128.0.0', wildcardMask: '0.127.255.255', totalAddresses: 8_388_608, usableHosts: 8_388_606, networks: 2 },
     { bits: 10, cidr: '/10', subnetMask: '255.192.0.0', wildcardMask: '0.63.255.255', totalAddresses: 4_194_304, usableHosts: 4_194_302, networks: 4 },
