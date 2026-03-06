@@ -1,23 +1,24 @@
 # TUIJS-UTIL
 
 ## Description
-A simple JavaScript utility library
+A simple JavaScript utility library. TUIJS-UTIL contains a number of different functions, lists, and regular expressions that make coding a little easier.
 
 ## Install
 npm i tuijs-util
 
 ## Import
-All utilities are provide both in ESM and CJS formats. Simply specific utility you want.
+All utilities are provide both via named exports and can be called like any other function.
 
-## ESM
+## Example
 ```javascript
-import { utilFunctionName, utilFunctionName2 } from 'tuijs-util';
-utilFunctionName();
-utilFunctionName2();
+import { parseTemplate } from 'tuijs-util';
+
+const titleTemple = parseTemplate(/*html*/`
+    <div>
+        <h1>Page Title</h1>
+    </div>
+`);
+document.body.appendChild(titleTemple);
+
 ```
-## CJS
-```javascript
-const { utilFunctionName, utilFunctionName2 } = require('tuijs-util');
-utilFunctionName();
-utilFunctionName2();
-```
+

@@ -1,7 +1,7 @@
 /**
  * Takes an HTML template literal, parses it, then extracts it.
  */
-export function parseTemplate(templateLiteral: string): DocumentFragment | undefined {
+export function parseTemplate(templateLiteral: string): DocumentFragment {
     const parser: DOMParser = new DOMParser();
     const parsedDocument: Document = parser.parseFromString(templateLiteral, 'text/html');
     const element: HTMLTemplateElement | null = parsedDocument.querySelector('template');

@@ -1,7 +1,7 @@
 /**
  * Takes an HTML template literal, parses it, then extracts it.
  */
-export declare function parseTemplate(templateLiteral: string): DocumentFragment | undefined;
+export declare function parseTemplate(templateLiteral: string): DocumentFragment;
 /**
  * Takes an HTML template literal, parses it, then extracts the element.
  * All elements in the template MUST be contained within a single parent element.
