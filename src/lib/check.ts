@@ -157,6 +157,20 @@ export function checkEmail(string: string): boolean {
 }
 
 /**
+ * Checks if a string is a newline-separated list.
+ * Returns true if the input is a string containing at least one newline character and false if not.
+ */
+export function checkIsList(input: any): boolean {
+    if (typeof input !== 'string' || input.length === 0) {
+        return false;
+    }
+    if (input.includes('{') || input.includes('[') || input.includes(']') || input.includes('}')) {
+        return false;
+    }
+    return input.includes('\n') || input.includes('\r') || input.includes(',');
+}
+
+/**
  * Checks an input to determine if it is an Array.
  * Returns true if the input is an Array and false if not.
  * NOTE - This probably doesn't need to exist but it is here for consistency with the other check functions.
