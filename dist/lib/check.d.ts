@@ -57,6 +57,11 @@ export declare function checkAnySpaces(string: string): boolean;
  */
 export declare function checkEmail(string: string): boolean;
 /**
+ * Checks if a string is a newline-separated list.
+ * Returns true if the input is a string containing at least one newline character and false if not.
+ */
+export declare function checkIsList(input: any): boolean;
+/**
  * Checks an input to determine if it is an Array.
  * Returns true if the input is an Array and false if not.
  * NOTE - This probably doesn't need to exist but it is here for consistency with the other check functions.

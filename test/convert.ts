@@ -1,4 +1,4 @@
-import { checkIsList, checkIsArray, checkIsObject, checkIsJson } from "./check";
+import { checkIsList, checkIsArray, checkIsObject, checkIsJson } from "../src/lib/check";
 export function convertToJson(input: Array<any> | Object | string): string {
     if (!checkIsArray(input) || !checkIsObject(input) || !checkIsList(input)) {
         throw new Error(`Input must be a List, an Array, or an Object.`);
