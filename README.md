@@ -1,7 +1,11 @@
 # TUIJS-UTIL
+***Last Updated 03/11/2026***
 
 ## Description
 A simple JavaScript utility library. TUIJS-UTIL contains a number of different functions, lists, and regular expressions that make coding a little easier.
+
+<br>
+<br>
 
 ## Install
 npm i tuijs-util
