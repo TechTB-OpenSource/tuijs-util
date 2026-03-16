@@ -9,7 +9,6 @@ export function parseFunctionString(string: string): Function | undefined {
     if (!match) {
         throw new Error('Input does not match the expected pattern "functionName(args)".');
     }
-    const _: string = match[0]; // Full match (not used)
     const funcName: string = match[1]; // Function name
     const args: string = match[2]; // Arguments as a single string
     const func = window[funcName as keyof Window];
