@@ -1,0 +1,20 @@
+export declare const millisecond = 1;
+export declare const second = 1000;
+export declare const minute: number;
+export declare const hour: number;
+export declare const day: number;
+export declare const day30: number;
+export declare const day60: number;
+export declare const day90: number;
+export declare const week: number;
+export declare const fortnight: number;
+export declare const month28: number;
+export declare const month29: number;
+export declare const month: number;
+export declare const month30: number;
+export declare const month31: number;
+export declare const quarter: number;
+export declare const year: number;
+export declare const leapYear: number;
+export declare const averageYear: number;
+//# sourceMappingURL=math.d.ts.map

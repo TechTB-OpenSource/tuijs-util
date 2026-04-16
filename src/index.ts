@@ -8,3 +8,4 @@ export * from './lib/http.js';
 export * from './lib/misc.js';
 export * from './lib/parse.js';
 export * from './lib/regex.js';
+export * from './lib/math.js';
