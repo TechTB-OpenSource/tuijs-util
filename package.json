@@ -1,6 +1,6 @@
 {
     "name": "tuijs-util",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "description": "A simple JavaScript utility library",
     "author": "TechTB LLC",
     "license": "MIT",
@@ -22,6 +22,6 @@
     },
     "devDependencies": {
         "rimraf": "^6.1.3",
-        "typescript": "^6.0.2"
+        "typescript": "^6.0.3"
     }
 }
