@@ -9,3 +9,4 @@ export * from './lib/misc.js';
 export * from './lib/parse.js';
 export * from './lib/regex.js';
 export * from './lib/math.js';
+export * from './lib/scroll.js';

@@ -37,46 +37,6 @@ export async function preloadImages(imageUrls) {
 export function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-/**
- * NEED TO ADD NAME AND JSDOC
- * MAY NEED REWORD
- */
-export function scrollIntoView() {
-    let allObservers = [];
-    function addObserver(targets, callback, observerOptions = { threshold: 0.5 }) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) { // Only trigger when the element is intersecting
-                    callback(entry.target);
-                }
-            });
-        }, observerOptions);
-        for (let i = 0; i < targets.length; i++) {
-            observer.observe(targets[i]);
-        }
-        allObservers.push(observer);
-    }
-    function removeNamedObserver(name) {
-        for (let i = 0; i < allObservers.length; i++) {
-            if (allObservers[i].name === name) { // REMOVE ANY?
-                allObservers[i].disconnect();
-                allObservers.splice(i, 1);
-                i--;
-            }
-        }
-    }
-    function removeAllObservers() {
-        for (let i = 0; i < allObservers.length; i++) {
-            allObservers[i].disconnect();
-        }
-        allObservers = [];
-    }
-    return {
-        addObserver,
-        removeNamedObserver,
-        removeAllObservers
-    };
-}
 export function convertBitsToMask(bits) {
     if (bits < 0 || bits > 32) {
         throw new Error("Bit input must be between 0 and 32");

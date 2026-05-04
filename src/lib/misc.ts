@@ -43,52 +43,6 @@ export function sleep(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-/**
- * NEED TO ADD NAME AND JSDOC
- * MAY NEED REWORD
- */
-export function scrollIntoView() {
-    let allObservers: IntersectionObserver[] = [];
-
-    function addObserver(targets: Element[], callback: (target: Element) => void, observerOptions: IntersectionObserverInit = { threshold: 0.5 }) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {  // Only trigger when the element is intersecting
-                    callback(entry.target);
-                }
-            });
-        }, observerOptions);
-        for (let i = 0; i < targets.length; i++) {
-            observer.observe(targets[i])
-
-        }
-        allObservers.push(observer);
-    }
-
-    function removeNamedObserver(name: string) {
-        for (let i = 0; i < allObservers.length; i++) {
-            if ((allObservers[i] as any).name === name) { // REMOVE ANY?
-                allObservers[i].disconnect();
-                allObservers.splice(i, 1);
-                i--;
-            }
-        }
-    }
-
-    function removeAllObservers() {
-        for (let i = 0; i < allObservers.length; i++) {
-            allObservers[i].disconnect();
-        }
-        allObservers = [];
-    }
-
-    return {
-        addObserver,
-        removeNamedObserver,
-        removeAllObservers
-    }
-}
-
 export function convertBitsToMask(bits: number): string | undefined {
     if (bits < 0 || bits > 32) {
         throw new Error("Bit input must be between 0 and 32");
